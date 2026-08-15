@@ -1,0 +1,5185 @@
+/* Reset y configuración base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+    overflow-y: scroll;
+}
+
+/* Login Page & Premium Light Theme Updates */
+.login-page-body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #f8fafc;
+    background-image:
+        radial-gradient(at 0% 0%, hsla(217, 100%, 92%, 1) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, hsla(213, 100%, 94%, 1) 0px, transparent 50%);
+    background-attachment: fixed;
+    color: #334155;
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Background animated shapes */
+.login-bg-shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+    opacity: 0.6;
+    animation: float 10s infinite ease-in-out alternate;
+}
+
+.login-bg-shape-1 {
+    width: 400px;
+    height: 400px;
+    background: #dbeafe;
+    top: -100px;
+    left: -100px;
+}
+
+.login-bg-shape-2 {
+    width: 300px;
+    height: 300px;
+    background: #e0e7ff;
+    bottom: -50px;
+    right: -50px;
+    animation-delay: -5s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px) scale(1);
+    }
+
+    100% {
+        transform: translateY(30px) scale(1.05);
+    }
+}
+
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+    padding: 40px;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.login-logo-wrapper {
+    margin-bottom: 24px;
+    display: inline-block;
+}
+
+.login-logo-wrapper img {
+    width: 80px;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+}
+
+.login-container h1 {
+    font-family: 'Outfit', sans-serif;
+    color: #0f172a;
+    margin-bottom: 8px;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.login-sub {
+    color: #64748b;
+    margin-bottom: 32px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.login-form-unique {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.login-form-unique label {
+    color: #475569;
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.login-form-unique input {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    padding: 14px 16px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 15px;
+    background: #ffffff;
+    color: #1e293b;
+    transition: all 0.3s ease;
+}
+
+.login-form-unique input::placeholder {
+    color: #94a3b8;
+}
+
+.login-form-unique input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+
+.password-field-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-field-container input {
+    width: 100%;
+    padding-right: 48px;
+}
+
+.password-toggle-btn {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #f1f5f9;
+    border: none;
+    color: #64748b;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.password-toggle-btn:hover {
+    background: #e2e8f0;
+    color: #334155;
+}
+
+.error-text {
+    color: #ef4444;
+    font-size: 13px;
+    margin-top: 6px;
+    display: none;
+    font-weight: 500;
+}
+
+.login-submit-btn {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.login-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
+}
+
+.login-submit-btn:active {
+    transform: translateY(0);
+}
+
+.login-info,
+.register-link {
+    margin-top: 20px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.register-link a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.register-link a:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+/* Clear button from previous code */
+.clear-btn {
+    background: #64748b !important;
+    color: #fff !important;
+    border: none !important;
+    padding: 12px !important;
+    border-radius: 12px !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    margin-top: 10px !important;
+    width: 100% !important;
+    transition: background-color 0.3s !important;
+}
+
+.clear-btn:hover {
+    background: #475569 !important;
+}
+
+/* Dashboard Layout */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    background: #f5f5f5;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: #fff;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px 0;
+    transition: width 0.3s ease;
+    overflow-x: hidden;
+    flex-shrink: 0;
+}
+
+/* Estado Colapsado */
+.sidebar.collapsed {
+    width: 80px;
+}
+
+.sidebar.collapsed .sidebar-header h3,
+.sidebar.collapsed .sidebar-header p,
+.sidebar.collapsed .sidebar-menu .text,
+.sidebar.collapsed .sidebar-menu .arrow-icon {
+    display: none;
+}
+
+.sidebar.collapsed .sidebar-header {
+    padding: 0 10px 20px;
+    text-align: center;
+}
+
+.sidebar.collapsed .sidebar-logo {
+    width: 50px;
+    margin: 0 auto 10px;
+}
+
+.sidebar.collapsed .sidebar-menu a {
+    justify-content: center;
+    padding: 15px 0;
+}
+
+.sidebar.collapsed .sidebar-menu a i {
+    margin-right: 0;
+    font-size: 18px;
+}
+
+/* Submenús en estado colapsado (opcional: ocultarlos o mostrarlos flotantes) */
+.sidebar.collapsed .submenu {
+    display: none !important;
+    /* Por simplicidad, ocultamos submenús en modo colapsado */
+}
+
+.sidebar-header {
+    padding: 0 20px 20px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+.sidebar-header h3 {
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.sidebar-header p {
+    color: #666;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.sidebar-logo {
+    display: block;
+    width: 80px;
+    height: auto;
+    margin: 0 0 10px 0;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+.sidebar-menu {
+    list-style: none;
+}
+
+.sidebar-menu li {
+    margin-bottom: 5px;
+}
+
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-menu a:hover {
+    background: #f8f9fa;
+    color: #333;
+    border-left-color: #007bff;
+}
+
+.sidebar-menu a.active {
+    background: #e8f0fe;
+    color: #007bff;
+    font-weight: 600;
+    border-left-color: #007bff;
+}
+
+.sidebar-menu a i {
+    margin-right: 12px;
+    width: 16px;
+    text-align: center;
+    color: #007bff;
+    /* AZUL BRILLANTE PARA ICONOS DEL SIDEBAR */
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    background: #f5f5f5;
+    transition: margin-left 0.3s ease, width 0.3s ease;
+    min-width: 0;
+    /* Permite que el contenedor se achique correctamente */
+}
+
+.main-header {
+    background: #fff;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-title i {
+    color: #007bff;
+    font-size: 16px;
+}
+
+.header-title h2 {
+    color: #333;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #666;
+    font-size: 14px;
+}
+
+.user-info i {
+    font-size: 16px;
+}
+
+.user-info div {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-info div span:first-child {
+    font-weight: 500;
+}
+
+/* Dashboard Stats */
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 30px;
+}
+
+.stat-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: #e3f2fd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1976d2;
+    font-size: 20px;
+}
+
+.stat-card.warning .stat-icon {
+    background: #fff3e0;
+    color: #f57c00;
+}
+
+.stat-card.alert .stat-icon {
+    background: #fff8e1;
+    color: #fbc02d;
+}
+
+.clickable-card {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.clickable-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
+}
+
+.stat-content h3 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.stat-content p {
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Section Headers */
+.section-header {
+    padding: 30px 30px 20px;
+}
+
+.section-header h3 {
+    color: #333;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.section-header p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Form Sections */
+.form-section {
+    background: #fff;
+    margin: 0 30px 20px;
+    margin-top: 25px;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-section h4 {
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.form-section p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    background: #fff;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Buttons */
+.btn-primary,
+.btn-secondary,
+.btn-outline,
+.btn-danger {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: #007bff;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background: #545b62;
+}
+
+/* Estilos para botones dentro de form-group para alineación */
+.form-group .btn-secondary {
+    height: 44px;
+    margin-top: 24px;
+    align-self: flex-end;
+    width: 100%;
+    padding: 12px 16px;
+}
+
+/* Estilos para búsqueda de productos */
+.product-search-container {
+    position: relative;
+    width: 100%;
+}
+
+.product-search-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    background: #fff;
+    transition: border-color 0.3s;
+}
+
+.product-search-input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.product-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.product-result-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s;
+}
+
+.product-result-item:hover {
+    background-color: #f8f9fa;
+}
+
+.product-result-item:last-child {
+    border-bottom: none;
+}
+
+.product-result-item.selected {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.product-result-name {
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.product-result-details {
+    font-size: 12px;
+    color: #666;
+}
+
+.product-result-item.selected .product-result-details {
+    color: #e6f3ff;
+}
+
+/* Dropdown enriquecido de compras */
+.prod-result-rich {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.prod-info-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.prod-nombre {
+    font-weight: 600;
+    font-size: 0.88rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.prod-stock {
+    font-size: 0.78rem;
+    font-weight: 500;
+}
+
+.prod-info-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+.prod-costo,
+.prod-venta {
+    font-size: 0.78rem;
+    color: #555;
+    white-space: nowrap;
+}
+
+.prod-costo {
+    font-weight: 600;
+    color: #333;
+}
+
+.product-result-item.selected .prod-costo,
+.product-result-item.selected .prod-venta,
+.product-result-item.selected .prod-stock {
+    color: #e6f3ff;
+}
+
+.btn-outline {
+    background: transparent;
+    color: #6c757d;
+    border: 1px solid #6c757d;
+}
+
+.btn-outline:hover {
+    background: #6c757d;
+    color: #fff;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.btn-icon:hover {
+    background: #f8f9fa;
+    color: #333;
+}
+
+/* Product Selection */
+.product-selection {
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.product-selection h5 {
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.total-section {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.total-section h4 {
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Table Sections */
+.table-section {
+    background: #fff;
+    margin: 0 30px 20px;
+    margin-top: 25px;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.table-section h4 {
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.table-section p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.data-table th {
+    background: #f8f9fa;
+    color: #333;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 15px 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.data-table td {
+    padding: 15px 12px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    color: #333;
+}
+
+.data-table tr {
+    position: relative;
+    /* Evita que queden atrapados en capas inferiores */
+    border-bottom: 1px solid #eee;
+    overflow: visible !important;
+}
+
+.data-table tr:hover {
+    background: #f8f9fa;
+    z-index: 900;
+    /* Asegura que la fila activa flote sobre todo lo demás */
+}
+
+/* Alineacion derecha para columnas numericas (precios, cantidades, totales, stock) */
+.data-table th.col-num,
+.data-table td.col-num {
+    text-align: right;
+}
+
+/* Status Badges */
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status-badge.low {
+    background: #fff3e0;
+    color: #f57c00;
+}
+
+.stock-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.stock-badge.good {
+    background: #e8f5e8;
+    color: #2e7d32;
+}
+
+.stock-badge.low {
+    background: #fff3e0;
+    color: #f57c00;
+}
+
+.stock-badge.empty {
+    background: #ffebee;
+    color: #d32f2f;
+}
+
+/* Search Section */
+.search-section {
+    padding: 0 30px 20px;
+}
+
+.search-box {
+    position: relative;
+    max-width: 400px;
+}
+
+.search-box i {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 16px 12px 45px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    background: #fff;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/* Compras / Proveedores / Ventas / Clientes - botones de ordenamiento (estado activo) */
+#compras-sort-fecha.active,
+#compras-sort-total.active,
+#proveedor-sort-nombre.active,
+#ventas-sort-fecha.active,
+#ventas-sort-total.active,
+#clientes-sort-apellido.active,
+#clientes-sort-nombre.active,
+#user-sort-apellido.active,
+#user-sort-nombre.active {
+    background: #e7f1ff !important;
+    border-color: #007bff !important;
+    color: #0056b3 !important;
+}
+
+#compras-sort-fecha .sort-arrow,
+#compras-sort-total .sort-arrow,
+#proveedor-sort-nombre .sort-arrow,
+#ventas-sort-fecha .sort-arrow,
+#ventas-sort-total .sort-arrow,
+#clientes-sort-apellido .sort-arrow,
+#clientes-sort-nombre .sort-arrow,
+#user-sort-apellido .sort-arrow,
+#user-sort-nombre .sort-arrow {
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+/* Low Stock Section */
+.low-stock-section {
+    background: #fff;
+    margin: 0 30px 20px;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.low-stock-section h3 {
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.low-stock-section p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* Filters Section */
+.filters-section {
+    background: #fff;
+    margin: 0 30px 20px;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.filters-section h4 {
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filters-section p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.filters-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: flex-end;
+}
+
+.filters-buttons button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filters-buttons .btn-outline {
+    background: transparent;
+    color: #6c757d;
+    border: 1px solid #6c757d;
+}
+
+.filters-buttons .btn-outline:hover {
+    background: #6c757d;
+    color: #fff;
+}
+
+.filters-buttons .btn-primary {
+    background: #007bff;
+    color: #fff;
+    border: none;
+}
+
+.filters-buttons .btn-primary:hover {
+    background: #0056b3;
+}
+
+/* Stats Cards for Reports */
+.stats-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 0 30px 20px;
+}
+
+
+/* Compact styling for the Sales summary shown in Principal (Ventas - Resumen) */
+.sales-dashboard .stats-cards {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    padding: 0 30px 18px;
+}
+
+.sales-dashboard .stat-card {
+    padding: 14px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+    min-height: 100px;
+}
+
+.sales-dashboard .stat-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    font-size: 18px;
+    margin: 0;
+}
+
+.sales-dashboard .stat-content h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1;
+}
+
+.sales-dashboard .stat-content p {
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+}
+
+.sales-dashboard .stat-content small {
+    display: block;
+    font-size: 12px;
+    color: #999;
+    margin-top: 4px;
+}
+
+/* Make sure the sales summary scales a bit tighter on small screens */
+@media (max-width: 768px) {
+    .sales-dashboard .stats-cards {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 20px 16px;
+    }
+
+    .sales-dashboard .stat-card {
+        min-height: 90px;
+        padding: 12px;
+    }
+}
+
+.stats-cards .stat-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 20px;
+}
+
+.stats-cards .stat-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.stats-cards .stat-icon.blue {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.stats-cards .stat-icon.green {
+    background: #e8f5e8;
+    color: #2e7d32;
+}
+
+.stats-cards .stat-icon.purple {
+    background: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.stats-cards .stat-icon.orange {
+    background: #fff3e0;
+    color: #f57c00;
+}
+
+.stats-cards .stat-icon.red {
+    background: #ffebee;
+    color: #d32f2f;
+}
+
+.stats-cards .stat-icon.gold {
+    background: #fff8e1;
+    color: #f57f17;
+}
+
+.stats-cards .stat-icon.silver {
+    background: #f5f5f5;
+    color: #757575;
+}
+
+.stats-cards .stat-content h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.stats-cards .stat-content p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.stats-cards .stat-content small {
+    color: #999;
+    font-size: 12px;
+}
+
+/* Reports Section */
+.reports-section {
+    padding: 0 30px 20px;
+}
+
+.report-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.report-item h4 {
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.report-item p {
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+}
+
+.report-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.report-content .amount {
+    font-weight: 600;
+    color: #333;
+}/* Mensaje de éxito destacado */
+.success-banner {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #10b981;
+    color: white;
+    padding: 20px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    font-size: 18px;
+    font-weight: 600;
+    z-index: 9999;
+    display: none;
+    animation: slideDown 0.4s ease-out;
+}
+
+.success-banner.show {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.success-banner i {
+    font-size: 24px;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+
+/* SPA Sections */
+.spa-section {
+    display: none;
+}
+
+.spa-section:first-child {
+    display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .sidebar-menu {
+        display: flex;
+        overflow-x: auto;
+        gap: 10px;
+    }
+
+    .sidebar-menu li {
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+
+    .sidebar-menu a {
+        padding: 10px 15px;
+        white-space: nowrap;
+    }
+
+    .main-header {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-cards {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 20px 20px;
+    }
+
+    .form-section,
+    .table-section,
+    .low-stock-section,
+    .filters-section {
+        margin: 0 20px 20px;
+    }
+
+    .section-header {
+        padding: 20px 20px 15px;
+    }
+
+    .search-section {
+        padding: 0 20px 20px;
+    }
+
+    .reports-section {
+        padding: 0 20px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-cards {
+        grid-template-columns: 1fr;
+    }
+
+
+
+    /* Optimizaciones para formularios de login en móviles */
+    .login-container {
+        margin: 10px auto;
+        padding: 20px;
+        max-height: 98vh;
+    }
+
+    #login-container {
+        margin: 40px auto 10px auto;
+    }
+
+    .login-container h1 {
+        font-size: 22px;
+        margin-bottom: 6px;
+    }
+
+    .login-sub {
+        font-size: 12px;
+        margin-bottom: 15px;
+    }
+
+    .login-form-unique {
+        gap: 12px;
+    }
+
+    .login-form-unique input,
+    .login-form-unique select {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    .login-form-unique button {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .register-link {
+        margin-top: 12px;
+        font-size: 12px;
+    }
+}
+
+
+
+
+/* Estilos para badges de rol de usuarios */
+.status-badge.admin {
+    background: transparent;
+    color: #333;
+    padding: 0;
+    border-radius: 0;
+    font-size: 14px;
+    font-weight: normal;
+    text-shadow: none;
+    box-shadow: none;
+}
+
+.status-badge.empleado {
+    background: transparent;
+    color: #333;
+    padding: 0;
+    border-radius: 0;
+    font-size: 14px;
+    font-weight: normal;
+    text-shadow: none;
+    box-shadow: none;
+}
+
+
+
+
+
+/* Principal dashboard: show low-stock table and make KPI cards even and aligned */
+#principal-section .low-stock-section {
+    display: block;
+    /* mostrar la tabla de productos agotados */
+}
+
+#principal-section .dashboard-stats {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    padding: 20px 30px;
+    align-items: stretch;
+}
+
+#principal-section .dashboard-stats .stat-card {
+    padding: 20px;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+/* Force icons and content to align vertically centered and consistent */
+#principal-section .dashboard-stats .stat-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    font-size: 20px;
+}
+
+#principal-section .dashboard-stats .stat-content h3 {
+    font-size: 26px;
+    margin-bottom: 4px;
+}
+
+#principal-section .dashboard-stats .stat-content p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}/* --- ESTILOS PARA MENSAJES DE VALIDACIÓN --- */
+
+.input-error {
+    border-color: #e74c3c !important;
+}
+
+/* Estilo para los mensajes de error debajo de cada campo */
+.error-message {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+/* Contenedor del mensaje general del formulario */
+.form-message {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 500;
+    text-align: center;
+    border: 1px solid transparent;
+}
+
+/* Estilo para el mensaje de éxito (verde) */
+.form-message.success {
+    color: #27ae60;
+    background-color: #e9f7ef;
+    border-color: #a3d9b8;
+}
+
+/* Estilo para el mensaje de error general (rojo) */
+.form-message.error {
+    color: #c0392b;
+    background-color: #fbeae9;
+    border-color: #f1c0bc;
+}
+
+/* --- ESTILOS EXCLUSIVOS PARA ALERTAS DEL LOGIN (PILL) --- */
+.login-pill-message {
+    margin: 15px auto 0 auto;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 1px solid transparent;
+    opacity: 0;
+    animation: popInPill 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes popInPill {
+    0% { opacity: 0; transform: scale(0.9) translateY(10px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.login-pill-message.success {
+    color: #059669;
+    background-color: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.2);
+}
+
+.login-pill-message.success::before {
+    content: '\f058'; /* Check circle */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 16px;
+}
+
+.login-pill-message.error {
+    color: #e11d48;
+    background-color: rgba(225, 29, 72, 0.1);
+    border-color: rgba(225, 29, 72, 0.2);
+}
+
+.login-pill-message.error::before {
+    content: '\f071'; /* Triangle exclamation */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 16px;
+}
+
+
+/* --- ESTILOS PARA EL MULTI-SELECT MEJORADO --- */
+
+/* Ocultamos el select original, que solo guarda los datos */
+#proveedorProductosSelect {
+    display: none;
+}
+
+/* Contenedor principal del componente. Usamos position: relative
+   para que el menú de opciones se posicione correctamente dentro de él. */
+.form-group {
+    position: relative;
+}
+
+/* El contenedor que se ve como un campo de texto */
+.custom-multi-select-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* Permite que los tags pasen a la siguiente línea si no hay espacio */
+    align-items: center;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: text;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Efecto visual cuando el usuario hace clic o se enfoca en el componente */
+.custom-multi-select-container:focus-within {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+/* Contenedor de las etiquetas */
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    /* Espacio entre etiquetas */
+}
+
+/* Estilo de cada etiqueta (tag) */
+.tag {
+    display: flex;
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* La 'x' para eliminar la etiqueta */
+.tag-close {
+    margin-left: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: transform 0.2s;
+}
+
+.tag-close:hover {
+    transform: scale(1.2);
+}
+
+/* El campo de texto donde el usuario escribe */
+.custom-multi-select-container .custom-select-input {
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    /* Ocupa el espacio restante */
+    min-width: 150px;
+    padding: 5px;
+    font-size: 14px;
+}
+
+/* Contenedor del menú desplegable (dropdown) */
+.options-container {
+    display: none;
+    /* Oculto por defecto */
+    position: absolute;
+    /* CLAVE: Para que flote sobre el contenido */
+    top: 100%;
+    /* Se posiciona justo debajo del contenedor principal */
+    left: 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    max-height: 220px;
+    overflow-y: auto;
+    z-index: 1000;
+    /* Asegura que esté por encima de otros elementos */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 4px;
+    /* Pequeño espacio entre el input y el dropdown */
+}
+
+/* Estilo para cada opción del menú */
+.option {
+    padding: 12px 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.option:hover {
+    background-color: #f0f0f0;
+}
+
+
+
+
+.table-container-product {
+    /* La altura forzada y el padding han sido removidos para 
+       permitir que la paginación fluya naturalmente bajo la tabla */
+}
+
+.table-container-product .data-table {
+    overflow: visible !important;
+    /* Permitir que los tooltips escapen de la tabla */
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.table-container-product .data-table th:first-child {
+    border-top-left-radius: 8px;
+}
+
+.table-container-product .data-table th:last-child {
+    border-top-right-radius: 8px;
+}
+
+.table-container-product .data-table tr:last-child td:first-child {
+    border-bottom-left-radius: 8px;
+}
+
+.table-container-product .data-table tr:last-child td:last-child {
+    border-bottom-right-radius: 8px;
+}
+
+/* ===== POPOVER DE PROVEEDORES ===== */
+.proveedor-badge-wrapper {
+    display: inline-block;
+    position: relative;
+}
+
+.proveedor-badge {
+    background: #e0e7ff;
+    color: #4f46e5;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    user-select: none;
+}
+
+.proveedor-badge:hover {
+    background: #c7d2fe;
+    transform: scale(1.05);
+}
+
+.proveedor-popover {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1e293b;
+    color: #f1f5f9;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1.5;
+    white-space: nowrap;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    z-index: 99999;
+    pointer-events: none;
+    opacity: 0;
+    animation: popoverFadeIn 0.2s ease forwards;
+}
+
+.proveedor-popover::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-bottom-color: #1e293b;
+}
+
+.proveedor-popover .popover-label {
+    color: #94a3b8;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.proveedor-popover .popover-names {
+    font-weight: 500;
+    color: #e2e8f0;
+}
+
+.proveedor-badge-wrapper:hover .proveedor-popover,
+.proveedor-badge-wrapper.popover-active .proveedor-popover {
+    display: block;
+    opacity: 1;
+}
+
+@keyframes popoverFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* ===== POPOVER DE ESTADO PENDIENTE (COMPRAS) ===== */
+.pendiente-popover-wrapper {
+    display: inline-block;
+    position: relative;
+}
+
+.pendiente-popover {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    color: #1e293b;
+    padding: 12px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1.6;
+    white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    z-index: 99999;
+    pointer-events: none;
+    opacity: 0;
+    animation: popoverFadeIn 0.2s ease forwards;
+    text-align: left;
+    font-weight: bold;
+}
+
+.pendiente-popover::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-bottom-color: #ffffff;
+}
+
+/* Pseudo-elemento extra para el borde de la flechita si hay borde en el tooltip */
+.pendiente-popover::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 7px solid transparent;
+    border-bottom-color: #e2e8f0;
+    margin-bottom: -1px;
+}
+
+.pendiente-popover .popover-line {
+    color: #0f172a;
+    font-size: 12px;
+    font-weight: 400;
+    /* Normal weight for dynamic values */
+    margin-bottom: 2px;
+}
+
+.pendiente-popover-wrapper:hover .pendiente-popover {
+    display: block;
+    opacity: 1;
+}
+
+/* ===== TABLA DE PRODUCTOS EN MODAL DETALLE COMPRA ===== */
+.compra-productos-wrapper {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+.compra-productos-wrapper thead th {
+    position: sticky;
+    top: 0;
+    background: #f3f4f6;
+    color: #374151;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 12px 16px;
+    text-align: left;
+    z-index: 2;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Scrollbar sutil */
+.compra-productos-wrapper::-webkit-scrollbar {
+    width: 6px;
+}
+
+.compra-productos-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 8px;
+}
+
+.compra-productos-wrapper::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.compra-productos-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+.table-container-venta {
+    min-height: 600px;
+}
+
+.modal {
+    display: none;
+    /* Oculto por defecto */
+    position: fixed;
+    /* Flota sobre toda la página */
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Fondo oscuro */
+    /* Flexbox para centrar el contenido vertical y horizontalmente */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Cuando se muestra (JS setea display:flex) el contenido queda centrado */
+.modal[style*="flex"] {
+    display: flex !important;
+}
+
+/* * La caja blanca (contenido).
+ * Se aplica a CUALQUIER div con clase "modal-content"
+ * que esté dentro de un div con clase "modal".
+*/
+.modal .modal-content {
+    background-color: #fefefe;
+    margin: 0;
+    padding: 25px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    /* Ancho máximo */
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.3s;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* * El botón de cerrar (X).
+*/
+.modal .modal-close,
+.modal .close-modal {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.modal .modal-close:hover,
+.modal .close-modal:hover,
+.modal .modal-close:focus,
+.modal .close-modal:focus {
+    color: #000;
+}
+
+/* Animación */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ... Código CSS existente ... */
+
+/* Gestion-Inventario-Backend/src/main/resources/static/CSS/styles.css */
+
+/* ... (código CSS anterior) ... */
+
+/* Nuevo estilo para modales pequeños y cuadrados (como el de Borrado y Salida) */
+.modal .modal-content.modal-compact {
+    max-width: 500px;
+    /* Ancho máximo para hacerlo más compacto */
+    text-align: center;
+    /* Centrar el texto */
+    padding: 15px 30px;
+    /* Reducido a 15px verticalmente para hacerlo más corto */
+    height: 250px;
+    margin: 15% auto;
+    /* Centrado vertical mejorado */
+}
+
+/* Añadir espacio entre el texto y la X de cerrar */
+.modal .modal-content.modal-compact h3 {
+    padding-right: 40px;
+    /* Espacio con el botón cerrar */
+}
+
+/* Ajustar los botones dentro de este modal compacto para centrar */
+.modal .modal-content.modal-compact .modal-buttons {
+    justify-content: center;
+}
+
+/* Estilo para modales grandes (como el de detalle de compra) */
+.modal .modal-content.modal-large {
+    max-width: 800px;
+    /* Ancho máximo mayor */
+    height: 700px;
+    /* Altura automática */
+    max-height: 85vh;
+    /* Máximo 85% de la altura de la ventana */
+    overflow-y: auto;
+    /* Scroll si es necesario */
+    margin: 3% auto;
+    /* Menos margen superior para aprovechar espacio */
+}
+
+/* Estilo para modal de cliente - más ancho y rectangular */
+.modal .modal-content.modal-content-wide {
+    max-width: 950px;
+    /* Ancho máximo mayor para dos columnas */
+    width: 95%;
+    /* Usa más ancho de pantalla en dispositivos pequeños */
+    height: auto;
+    /* Altura automática */
+    max-height: 650px;
+    /* Limita la altura total del modal */
+    margin: 3% auto;
+    /* Menos margen superior */
+    overflow-y: visible;
+    /* Sin scroll */
+    padding: 15px 25px;
+    /* Reducido padding vertical */
+}
+
+/* Espaciado interno del modal rápido de proveedor en compras */
+#modal-add-proveedor-compras-overlay.modal .modal-content {
+    padding: 30px 35px;
+}
+
+#modal-add-proveedor-compras-overlay .modal-header {
+    margin-bottom: 22px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+#modal-add-proveedor-compras-overlay .form-row {
+    margin-bottom: 16px;
+}
+
+#modal-add-proveedor-compras-overlay .modal-footer {
+    margin-top: 20px;
+}
+
+/* Reducir espaciado interno del modal de cliente */
+#modal-add-cliente-overlay .form-row {
+    margin-bottom: 12px;
+    /* Menos espacio entre filas */
+}
+
+#modal-add-cliente-overlay .modal-header {
+    margin-bottom: 15px;
+    /* Menos espacio después del título */
+}
+
+#modal-add-cliente-overlay .modal-footer {
+    margin-top: 15px;
+    /* Menos espacio antes del botón */
+}
+
+
+.data-table th[data-sort-by] {
+    cursor: pointer;
+    user-select: none;
+    /* AÑADIDO: Aplicamos transición a todas las propiedades durante 0.3 segundos */
+    transition: all 0.7s ease-in-out;
+}
+
+/* AÑADIDO: Estilo para la columna que actualmente está ordenando */
+.data-table th.sort-asc,
+.data-table th.sort-desc {
+    background-color: #e9ecef;
+    /* Un gris muy claro */
+    color: #007bff;
+    /* Hace que el texto y el ícono sean azules para resaltar */
+}
+
+/* AÑADIDO: Ajustamos el icono para que herede el color */
+.data-table th.sort-asc .sort-icon,
+.data-table th.sort-desc .sort-icon {
+    color: #007bff;
+}
+
+
+
+.main-content:focus {
+    outline: none;
+    /* Elimina el contorno predeterminado del navegador */
+}
+
+
+.low-stock-section .table-container {
+    min-height: 600px;
+    /* Altura suficiente para 7 filas. */
+}
+
+/* REGLAS DE ANIMACIÓN: Aplica transición de fade-out/fade-in */
+#low-stock-table-body {
+    opacity: 1;
+    /* Suaviza el cambio de opacidad en 0.2 segundos (200ms) */
+    transition: opacity 0.2s ease-in-out;
+}
+
+#low-stock-table-body.loading {
+    opacity: 0;
+    /* Oculta la tabla cuando se están cargando nuevos datos */
+}
+
+
+#product-table-body,
+#modal-compra-productos {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+}
+
+#product-table-body.loading,
+#modal-compra-productos.loading {
+    opacity: 0;
+    /* Oculta la tabla cuando se están cargando nuevos datos */
+}
+
+#modal-agotados .table-container {
+    min-height: 480px;
+}
+
+#agotados-table-body {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+}
+
+#agotados-table-body.loading {
+    opacity: 0;
+}
+
+#tabla-historial-caja-body {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+}
+
+#tabla-historial-caja-body {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+}
+
+#tabla-historial-caja-body.loading {
+    opacity: 0;
+}
+
+#modal-stock-bajo .table-container {
+    min-height: 480px;
+}
+
+#stock-bajo-table-body {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+}
+
+#stock-bajo-table-body.loading {
+    opacity: 0;
+}
+
+#proveedor-tabla {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+
+}
+
+
+#proveedor-tabla {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+}
+
+#proveedor-tabla.loading {
+    opacity: 0;
+    /* Oculta la tabla de proveedores mientras carga */
+}
+
+.table-container-proveedor {
+    /* (7 filas * 50px aprox) + 50px cabecera = 400px */
+    min-height: 650px;
+}
+
+/* ===== MODAL DETALLE PROVEEDOR - SIN SCROLL GENERAL ===== */
+#modal-detail-proveedor-overlay .modal-content.modal-large {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* Sin scroll en el modal completo */
+}
+
+#modal-detail-proveedor-overlay .modal-header {
+    flex-shrink: 0;
+    /* El header nunca se encoge */
+}
+
+#modal-detail-proveedor-overlay .modal-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* Sin scroll en el body general */
+    min-height: 0;
+    /* Clave para que flex + overflow funcione */
+}
+
+#modal-detail-proveedor-overlay .modal-body .detail-section:first-child {
+    flex-shrink: 0;
+    /* Info general siempre visible, no se encoge */
+}
+
+#modal-detail-proveedor-overlay .modal-body .detail-section:last-child {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    /* Permite comprimirse en pantallas chicas */
+    flex: 0 1 auto;
+    /* No ocupa el espacio vacío sobrante (no whitespace), pero se achica si falta */
+    overflow: hidden;
+    background: transparent;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+#modal-detail-proveedor-overlay .modal-body .detail-section:last-child .table-container {
+    flex: 0 1 auto;
+    /* Idem: abraza su contenido pero se estruja si es necesario */
+    max-height: 450px;
+    /* Alrededor de 7 u 8 filas seguras */
+    overflow-y: auto;
+    /* Agregamos los bordes redondeados y el contorno estilo tarjeta */
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background-color: #ffffff;
+    /* Quitamos los paddings derechos o inferiores para que el borde redondeado cierre perfecto */
+}
+
+/* Scrollbar moderno y sutil */
+#modal-detail-proveedor-overlay .table-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+#modal-detail-proveedor-overlay .table-container::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 8px;
+}
+
+#modal-detail-proveedor-overlay .table-container::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+#modal-detail-proveedor-overlay .table-container::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+/* Encabezado fijo */
+#modal-detail-proveedor-overlay .table-container thead th {
+    position: sticky;
+    top: 0;
+    background: #f3f4f6;
+    /* Fondo gris claro */
+    color: #374151;
+    /* Texto oscuro suave */
+    font-weight: 600;
+    font-size: 13px;
+    padding: 12px 16px;
+    text-align: left;
+    z-index: 2;
+    /* Borde inferior nítido igual al mockup en lugar de sombra */
+    border-bottom: 1px solid #e5e7eb;
+}
+
+#modal-detail-proveedor-overlay .table-container tbody td {
+    padding: 12px 16px;
+    color: #4b5563;
+    font-size: 13px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+#modal-proveedor-productos-body {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+}
+
+#modal-proveedor-productos-body.loading {
+    opacity: 0;
+}
+
+#modal-detail-proveedor-overlay .table-container tbody tr:last-child td {
+    border-bottom: none;
+    /* Quitamos el borde al último para que no doble con el borde del container */
+}
+
+#modal-detail-proveedor-overlay .table-container tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+#modal-detail-proveedor-overlay .modal-footer {
+    flex-shrink: 0;
+    /* El footer nunca se encoge */
+}
+
+#compras-historial-tabla-body {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+}
+
+/* * Cuando el JS añade la clase .loading, 
+ * la tabla se oculta con la transición.
+ */
+#compras-historial-tabla-body.loading {
+    opacity: 0;
+    /* Oculta la tabla de historial mientras carga */
+}
+
+/* * IMPORTANTE: Previene que la paginación "salte"
+ * cuando la tabla se oculta al cargar.
+ * Usamos un selector específico para el contenedor de esa tabla.
+ */
+#compras-section .table-section .table-container {
+    /* (10 filas * 50px aprox) + 50px cabecera = 550px */
+    min-height: 650px;
+}
+
+#user-table-body {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+}
+
+#user-table-body.loading {
+    opacity: 0;
+    /* Oculta la tabla de usuarios mientras carga */
+}
+
+/* Previene que la paginación "salte" */
+.table-container-usuarios {
+    /* (7 filas * 50px aprox) + 50px cabecera = 400px */
+    /* Ajusta este valor si 7 filas es incorrecto */
+    min-height: 600px;
+}
+
+
+#tabla-ventas-body {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+}
+
+#tabla-ventas-body.loading {
+    opacity: 0;
+    /* Oculta la tabla de ventas mientras carga */
+}
+
+/* * El contenedor de la tabla de ventas tiene la clase '.table-container-venta' 
+ * (ver admin.html) 
+ */
+.table-container-venta {
+    /* (7 filas * 50px aprox) + 50px cabecera = 400px */
+    min-height: 600px;
+}
+
+
+#stock-table-body {
+    opacity: 1;
+    /* Suaviza el cambio de opacidad en 0.2 segundos (200ms) */
+    transition: opacity 0.2s ease-in-out;
+}
+
+#stock-table-body.loading {
+    opacity: 0;
+    /* Oculta la tabla cuando se están cargando nuevos datos */
+}
+
+/* * Previene que la paginación "salte" cuando la tabla se oculta.
+ * Asumo que el contenedor de la tabla de stock tiene la clase 
+ * '.table-container-stock' (si no la tiene, deberías añadirla 
+ * en el HTML o ajustar este selector).
+ *
+ * Si no tienes una clase específica, puedes usar:
+ * #stock-section .table-container 
+ */
+#stock-section .table-container {
+    /* (7 filas * 50px aprox) + 50px cabecera = 400px */
+    min-height: 450px;
+}
+
+/* ==========================
+   TABLA DE CATEGORÍAS - ANIMACIONES
+   ========================== */
+#categorias-table-body {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+}
+
+#categorias-table-body.loading {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+#categorias-section .table-container {
+    min-height: 450px;
+}
+
+/* ==========================
+   TABLA DE CLIENTES - ANIMACIONES
+   ========================== */
+#tabla-clientes-body {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+}
+
+#tabla-clientes-body.loading {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.table-container-cliente {
+    min-height: 600px;
+}
+
+#cliente-detail-modal .modal-content {
+    max-width: 850px;
+    width: 90%;
+}
+
+
+.search-with-add {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* Espacio entre el input y el botón */
+}
+
+.search-with-add input[type="text"] {
+    /* El input ocupa todo el espacio menos el botón */
+    flex: 1;
+    margin-bottom: 0;
+    /* Quitamos el margen inferior que tienen los form-group */
+}
+
+.btn-add-quick {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 10px;
+    height: 38px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    flex-shrink: 0;
+
+    /* --- ¡CAMBIO DIRECTO! --- */
+    /* Este es un color azul "primario" estándar */
+    background-color: #0d6efd;
+
+    /* Esto es para el ícono '+' (es correcto) */
+    color: white;
+}
+
+.btn-add-quick:hover {
+    background-color: var(--color-primary-dark);
+}
+
+/* --- Estilos para el nuevo modal --- */
+/* (Se ocultará con JS, pero lo definimos aquí) */
+#modal-add-cliente-overlay {
+    display: none;
+}
+
+
+#modal-add-cliente-overlay .form-group {
+    margin-bottom: 22px;
+    /* Elige el valor que te guste, ej: 25px */
+}
+
+/* Aumenta el espacio *encima* de la sección del botón */
+#modal-add-cliente-overlay .modal-footer {
+    margin-top: 30px;
+    /* Elige el valor que te guste, ej: 35px */
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    /* Centra los botones */
+    margin-top: 20px;
+}
+
+
+.sidebar-menu .submenu {
+    list-style: none;
+    padding-left: 20px;
+    display: none;
+    background: #f8f9fa;
+}
+
+.sidebar-menu .has-submenu.open .submenu {
+    display: block;
+}
+
+.sidebar-menu .submenu li a {
+    padding: 10px 20px;
+    font-size: 13px;
+    border-left: 2px solid transparent;
+}
+
+.sidebar-menu .submenu li a:hover,
+.sidebar-menu .submenu li a.active {
+    color: #007bff;
+    border-left-color: #007bff;
+    background: transparent;
+}
+
+.arrow-icon {
+    transition: transform 0.3s;
+    font-size: 12px;
+    margin-left: auto;
+    /* Pushes arrow to the right */
+}
+
+.sidebar-menu .has-submenu.open .arrow-icon {
+    transform: rotate(180deg);
+}
+
+.subsection-container {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Inline Edit Inputs */
+.inline-edit-input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    background: #fff;
+    transition: border-color 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.inline-edit-input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.inline-edit-input[type="number"] {
+    max-width: 100px;
+}
+
+/* Tabla de detalle de compra: altura mínima predeterminada */
+.detalle-table-container {
+    min-height: 320px;
+}
+
+/* Resumen card: bloque superior color de marca */
+.summary-card {
+    padding: 0;
+    overflow: hidden;
+}
+
+.resumen-dark-block {
+    background: #007bff;
+    color: #fff;
+    padding: 20px 22px;
+    border-radius: 12px 12px 0 0;
+}
+
+.resumen-dark-block .resumen-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #cfe2ff;
+    margin-bottom: 6px;
+}
+
+.resumen-dark-block h2 {
+    margin: 0 0 16px;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #fff;
+    text-align: right;
+}
+
+.resumen-dark-block .resumen-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 8px 0 12px;
+}
+
+/* Resumen card: bloque inferior pagos */
+.resumen-pagos-block {
+    padding: 20px 22px;
+}
+
+.resumen-label-pagos {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #64748b;
+}
+
+.resumen-pagos-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+/* Botón full-width agregar método */
+.btn-agregar-pago {
+    width: 100%;
+    margin-top: 12px;
+    padding: 10px;
+    background: transparent;
+    border: 1px dashed #cbd5e1;
+    border-radius: 8px;
+    color: #007bff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.btn-agregar-pago:hover {
+    background: #f1f5f9;
+    border-color: #94a3b8;
+}
+
+/* Detalle compra: superficie continua sin contornos en filas */
+.detalle-table th {
+    background: #f0f4f8;
+    border-bottom: none;
+}
+
+.detalle-table td {
+    border-bottom: none;
+}
+
+.detalle-table tr:hover {
+    background: transparent;
+}
+
+/* Buscador con ícono de lupa */
+.search-with-icon {
+    position: relative;
+}
+
+.search-with-icon .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    font-size: 0.9rem;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.search-with-icon .product-search-input {
+    padding-left: 38px;
+}
+
+/* Input con prefijo $ para campos de dinero en detalle de compra */
+.input-money {
+    display: inline-flex;
+    align-items: stretch;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+    background: white;
+    transition: border-color 0.3s;
+}
+
+.input-money:focus-within {
+    border-color: #007bff;
+}
+
+.input-money .money-prefix {
+    padding: 0 4px 0 8px;
+    color: #555;
+    font-size: 14px;
+    background: white;
+    display: flex;
+    align-items: center;
+}
+
+.input-money .inline-edit-input {
+    border: none;
+    border-radius: 0;
+    text-align: right;
+    padding: 6px 8px;
+    width: 115px;
+    box-shadow: none;
+}
+
+.input-money .inline-edit-input:focus {
+    border-color: transparent;
+    box-shadow: none;
+}
+
+/* ========================================
+   TRUNCATE LONG TEXT IN PRODUCT TABLE
+   ======================================== */
+
+/* Limitar el ancho de las columnas de nombre */
+.data-table td:nth-child(1) {
+    max-width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ========================================
+   INVENTORY MANAGEMENT STYLES
+   ======================================== */
+
+/* Stock Filter Buttons */
+.stock-filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn-filter {
+    padding: 10px 18px;
+    border: 2px solid #ddd;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-filter:hover {
+    border-color: #007bff;
+    color: #007bff;
+    background: #f8f9fa;
+}
+
+.btn-filter.active {
+    background: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.btn-filter i {
+    font-size: 16px;
+}
+
+/* Stock Badges */
+.stock-display {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.stock-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.stock-badge.good {
+    background: #d4edda;
+    color: #155724;
+}
+
+.stock-badge.low {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.stock-badge.empty {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.stock-badge i {
+    font-size: 10px;
+}
+
+/* Action Buttons in Table */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.btn-action {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s;
+    color: #666;
+    font-size: 16px;
+}
+
+.btn-action:hover {
+    background: #f8f9fa;
+}
+
+.btn-action.view:hover {
+    color: #007bff;
+}
+
+.btn-action.edit:hover {
+    color: #28a745;
+}
+
+.btn-action.delete:hover {
+    color: #dc3545;
+}
+
+/* Center Actions column header and cells */
+.data-table th:last-child,
+.data-table td:last-child {
+    text-align: center;
+}
+
+/* Product Detail Modal */
+.modal-large {
+    max-width: 700px;
+    width: 90%;
+}
+
+/* Modal de detalle del producto - layout de grilla */
+#product-detail-modal .modal-content.modal-large {
+    max-width: 950px;
+    width: 92%;
+}
+
+.detail-grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.detail-grid-layout .detail-col-full {
+    grid-column: 1 / -1;
+}
+
+.detail-grid-layout .detail-col-half {
+    grid-column: span 1;
+}
+
+/* En pantallas chicas, vuelve a una sola columna */
+@media (max-width: 768px) {
+    .detail-grid-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-grid-layout .detail-col-half {
+        grid-column: 1 / -1;
+    }
+}
+
+/* Tabla de proveedores asociados - scroll interno con header sticky */
+#detail-proveedores-container {
+    max-height: 250px;
+    overflow-y: auto;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+#detail-proveedores-container thead th {
+    position: sticky;
+    top: 0;
+    background: #f1f3f5;
+    z-index: 1;
+    box-shadow: 0 1px 0 #dee2e6;
+}
+
+.detail-section {
+    margin-bottom: 25px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
+}
+
+.detail-grid-layout .detail-section {
+    margin-bottom: 0;
+    height: 100%;
+}
+
+.detail-section h4 {
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.detail-section h4 i {
+    color: #007bff;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.detail-item.full-width {
+    grid-column: 1 / -1;
+}
+
+.detail-item label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detail-item span {
+    font-size: 15px;
+    color: #333;
+    font-weight: 500;
+}
+
+.price-highlight {
+    font-size: 20px !important;
+    font-weight: 700 !important;
+}
+
+.cost-highlight {
+    font-size: 20px !important;
+    font-weight: 700 !important;
+}
+
+.stock-highlight {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+}
+
+/* Modal Footer */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 20px;
+    border-top: 1px solid #eee;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stock-filters {
+        flex-direction: column;
+    }
+
+    .btn-filter {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ========================================
+   MODAL OVERLAY FIX
+   ======================================== */
+
+/* Modal overlay - capa semi-transparente que cubre toda la pantalla */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    /* Oculto por defecto */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+/* Cuando el modal está visible */
+.modal-overlay[style*="display: flex"],
+.modal-overlay.modal-visible {
+    display: flex !important;
+}
+
+.modal-overlay.modal-visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Contenido del modal */
+.modal-content {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header del modal */
+.modal-header {
+    padding: 20px 25px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-header h3 i {
+    color: #007bff;
+}
+
+/* Botón cerrar del modal */
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #999;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.modal-close:hover {
+    background: #f8f9fa;
+    color: #333;
+}
+
+/* Body del modal */
+.modal-body {
+    padding: 25px;
+}
+
+/* ===================================
+   MODAL OVERLAY - ESTILOS GENERALES
+   =================================== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+.modal-overlay .modal-content {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    width: 90%;
+    margin: 20px auto;
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Espaciado del formulario de ventas */
+#ventas-create-container .form-section {
+    margin: 25px 30px;
+}
+
+#payment-row,
+#compra-payment-row {
+    grid-template-columns: 1fr 1fr;
+}
+
+#metodo-pago {
+    max-width: 100%;
+}
+
+/* ========================================
+   HOVER DE COLORES PARA BOTONES DE ACCIÓN
+   Se aplica a .btn-action (empleado/stock)
+   y a .btn-icon (admin: proveedores, usuarios, stock)
+   ======================================== */
+
+/* Base compartida para btn-icon */
+.btn-icon {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s;
+    color: #666;
+    font-size: 16px;
+}
+
+.btn-icon:hover {
+    background: #f8f9fa;
+}
+
+/* Botones de VER DETALLES → azul */
+.btn-view-proveedor:hover,
+.btn-view-usuario:hover,
+.btn-view-venta:hover,
+.btn-view-compra:hover {
+    color: #007bff;
+}
+
+/* Botones de EDITAR → verde */
+.btn-edit-proveedor:hover,
+.btn-edit-usuario:hover,
+.btn-edit-producto:hover {
+    color: #28a745;
+}
+
+/* Botones de ELIMINAR → rojo */
+.btn-delete-proveedor:hover,
+.btn-delete-usuario:hover,
+.btn-delete-producto:hover,
+.btn-unlink-producto:hover {
+    color: #dc3545;
+}
+
+/* Excepción: btn-add-quick siempre azul aunque tenga btn-icon */
+.btn-icon.btn-add-quick {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.btn-icon.btn-add-quick:hover {
+    background-color: #0b5ed7;
+    color: white;
+}
+
+/* Columna Dirección de la tabla de Proveedores – acortada para no romper botones */
+#proveedor-tabla td:nth-child(4) {
+    max-width: 160px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ========================================
+   HOVER BOTONES DETALLE TEMPORAL
+   (compras y ventas - agregar producto)
+   ======================================== */
+
+/* Guardar → verde */
+.btn-save-detalle:hover {
+    color: #28a745;
+}
+
+/* Cancelar → rojo */
+.btn-cancel-detalle:hover {
+    color: #dc3545;
+}
+
+/* Editar → verde */
+.btn-edit-detalle:hover {
+    color: #28a745;
+}
+
+/* Quitar/Eliminar → rojo */
+.btn-delete-detalle:hover {
+    color: #dc3545;
+}
+
+/* =============================================
+   Checklist de requisitos de contraseña
+   ============================================= */
+.password-checklist {
+    list-style: none;
+    padding: 8px 0 0 0;
+    margin: 0;
+}
+
+.password-checklist li {
+    font-size: 12px;
+    color: #999;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+    transition: color 0.25s ease;
+}
+
+.password-checklist li i {
+    font-size: 8px;
+    transition: color 0.25s ease;
+}
+
+/* Estado: cumplido */
+.password-checklist li.valid {
+    color: #28a745;
+}
+
+.password-checklist li.valid i {
+    font-size: 11px;
+}
+
+/* =============================================
+   Dashboard Layout (Compras)
+   ============================================= */
+.dashboard-layout {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    /* Permite que el sidebar sea sticky al soltarse del alto del main */
+}
+
+.dashboard-layout .col-left {
+    flex: 7;
+    /* 70% para content principal */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* Separación entre cards del main */
+}
+
+.dashboard-layout .col-right {
+    flex: 3;
+    /* 30% */
+    position: sticky;
+    top: 25px;
+    /* Altura a la que hace stop el scroll */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Reducción en celulares */
+@media (max-width: 900px) {
+    .dashboard-layout {
+        flex-direction: column;
+    }
+
+    .dashboard-layout .col-right {
+        position: static;
+        flex: auto;
+        width: 100%;
+    }
+}
+
+/* =============================================
+   Modern Card Style
+   ============================================= */
+.card-modern {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e0e0e0;
+}
+
+.card-modern .section-title {
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #f4f7f6;
+    color: #2c3e50;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card-modern .section-title i {
+    color: #4a90e2;
+}
+
+/* Ajustes Visuales Específicos */
+.summary-card .total-display-container {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    border-left: 5px solid #28a745;
+}
+
+.summary-card #compra-total-display {
+    margin: 0;
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+/* ── Stepper +/- de cantidad en detalle de venta ── */
+.qty-stepper {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.qty-stepper .btn-qty {
+    width: 26px;
+    height: 26px;
+    border: 1px solid #cbd5e1;
+    background: #f8fafc;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+}
+
+.qty-stepper .btn-qty:hover {
+    background: #e2e8f0;
+}
+
+.qty-stepper .qty-value {
+    min-width: 26px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.qty-stepper .qty-input {
+    width: 85px;
+    height: 26px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0 4px;
+    background: white;
+    -moz-appearance: textfield;
+}
+
+.qty-stepper .qty-input::-webkit-outer-spin-button,
+.qty-stepper .qty-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.qty-stepper .qty-input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.15);
+}
+
+/* Columna Cantidad del detalle: centrada (overrides col-num right) */
+.data-table th.col-qty,
+.data-table td.col-qty {
+    text-align: center;
+}
+
+.qty-stepper {
+    justify-content: center;
+}
+
+/* Tabular-nums: alineación de dígitos en montos */
+.data-table td.col-num,
+#subtotal-venta,
+#total-venta,
+#monto-descuento-mostrado,
+#venta-vuelto-amount,
+#cobros-mixtos-container,
+#venta-cobro-balance-indicator {
+    font-variant-numeric: tabular-nums;
+}
+
+/* Flash de resaltado cuando el producto ya está en el detalle */
+@keyframes rowHighlightFlash {
+    0% {
+        background: #fff8c5;
+    }
+
+    100% {
+        background: transparent;
+    }
+}
+
+/* ========================================
+   MODAL DETALLE PRODUCTO - TABS
+   ======================================== */
+.product-detail-tabs {
+    display: flex;
+    gap: 4px;
+    padding: 12px 24px 0;
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.product-detail-tab {
+    padding: 12px 26px;
+    border: 1px solid transparent;
+    background: #f1f5f9;
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    border-radius: 10px 10px 0 0;
+    margin-bottom: -1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.product-detail-tab:hover {
+    background: #e2e8f0;
+    color: #334155;
+}
+
+.product-detail-tab.active {
+    background: white;
+    color: #0f172a;
+    border-color: #e2e8f0;
+    border-top: 3px solid #14b8a6;
+    border-bottom: 2px solid white;
+    box-shadow: 0 -4px 6px -4px rgba(0, 0, 0, 0.05);
+}
+
+.product-detail-tab-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    background: #e2e8f0;
+    color: #475569;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 10px;
+}
+
+.product-detail-tab.active .product-detail-tab-badge {
+    background: #6366f1;
+    color: white;
+}
+
+.row-highlight {
+    animation: rowHighlightFlash 1.5s ease-out;
+}
+
+/* ==========================================================================
+   MODAL DETALLE COMPRA REDISEÑADO
+   ========================================================================== */
+
+.pdm-container {
+    padding: 0 !important;
+    background-color: #f8fafc !important;
+    border-radius: 12px !important;
+    overflow: visible !important;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 90vh !important;
+    max-height: 95vh !important;
+    max-width: 1000px !important;
+}
+
+/* Header */
+.pdm-header {
+    background: #ffffff;
+    padding: 20px 24px;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 12px 12px 0 0;
+}
+
+.pdm-header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.pdm-header-icon {
+    font-size: 24px;
+    color: #3b82f6;
+    background: #eff6ff;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+.pdm-title {
+    margin: 0;
+    font-size: 20px;
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.pdm-id {
+    color: #64748b;
+    font-weight: 500;
+    font-size: 18px;
+    margin-left: 4px;
+}
+
+.pdm-metodo-label {
+    display: block;
+    font-size: 13px;
+    color: #64748b;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+.pdm-status-badge {
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    margin-right: 24px;
+    /* Space for close button */
+}
+
+/* Pestañas de Navegación */
+.pdm-tabs {
+    display: flex;
+    gap: 4px;
+    padding: 16px 24px 0;
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.pdm-tab {
+    padding: 12px 26px;
+    border: 1px solid transparent;
+    background: #f1f5f9;
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    border-radius: 10px 10px 0 0;
+    margin-bottom: -1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.pdm-tab:hover {
+    background: #e2e8f0;
+    color: #334155;
+}
+
+.pdm-tab.active {
+    background: white;
+    color: #0f172a;
+    border-color: #e2e8f0;
+    border-top: 3px solid #3b82f6;
+    border-bottom: 2px solid white;
+    box-shadow: 0 -4px 6px -4px rgba(0, 0, 0, 0.05);
+}
+
+.pdm-tab-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    background: #e2e8f0;
+    color: #475569;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 10px;
+}
+
+.pdm-tab.active .pdm-tab-badge {
+    background: #3b82f6;
+    color: white;
+}
+
+/* Animación y Pestañas Content */
+.pdm-tab-content {
+    animation: fadeInTab 0.3s ease-out;
+}
+
+@keyframes fadeInTab {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Body Scrolleable */
+.pdm-body {
+    padding: 24px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+/* Info Grid */
+.pdm-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.pdm-info-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.pdm-info-card-icon {
+    font-size: 16px;
+    color: #64748b;
+    background: #f1f5f9;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.pdm-icon-proveedor {
+    color: #8b5cf6;
+    background: #f5f3ff;
+}
+
+.pdm-icon-vencimiento {
+    color: #f59e0b;
+    background: #fffbeb;
+}
+
+.pdm-info-label {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #64748b;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.pdm-info-value {
+    display: block;
+    font-size: 15px;
+    color: #0f172a;
+    font-weight: 600;
+}
+
+/* Secciones Generales */
+.pdm-section-title {
+    font-size: 16px;
+    color: #334155;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pdm-section-title i {
+    color: #64748b;
+}
+
+/* Resumen de Pago */
+.pdm-pago-section {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.pdm-pago-section .pdm-section-title {
+    margin-top: 0;
+}
+
+.pdm-pago-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.pdm-pago-card {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+    text-align: right;
+}
+
+.pdm-pago-label {
+    display: block;
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.pdm-pago-valor {
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.pdm-pendiente-valor {
+    color: #10b981;
+    /* Verde por defecto, JS lo cambia si es pendiente */
+}
+
+.pdm-vence-info {
+    font-size: 12px;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 500;
+}
+
+/* Historial de Pagos */
+.pdm-pagos-details {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.pdm-pagos-summary {
+    padding: 16px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    color: #334155;
+    list-style: none;
+    /* Hide default triangle */
+    user-select: none;
+}
+
+.pdm-pagos-summary::-webkit-details-marker {
+    display: none;
+}
+
+.pdm-pagos-summary i.fa-history {
+    color: #64748b;
+    margin-right: 10px;
+}
+
+.pdm-pagos-count {
+    background: #e2e8f0;
+    color: #475569;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    margin-left: 10px;
+}
+
+.pdm-chevron {
+    margin-left: auto;
+    color: #94a3b8;
+    transition: transform 0.3s;
+}
+
+.pdm-pagos-details[open] .pdm-chevron {
+    transform: rotate(180deg);
+}
+
+.pdm-pagos-body {
+    padding: 0 20px 20px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.pdm-pagos-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.pdm-pagos-table th {
+    text-align: left;
+    padding: 12px 8px;
+    color: #64748b;
+    font-weight: 600;
+    border-bottom: 2px solid #f1f5f9;
+}
+
+.pdm-pagos-table td {
+    padding: 12px 8px;
+    color: #334155;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* Productos Comprados */
+.pdm-productos-section {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.pdm-productos-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.pdm-productos-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.pdm-filter-btn {
+    padding: 8px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 13px;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    transition: all 0.2s;
+    color: #475569;
+    font-weight: 500;
+}
+
+.pdm-filter-btn:hover {
+    background: #f1f5f9;
+    border-color: #94a3b8;
+}
+
+.pdm-filter-btn.active {
+    background: #eff6ff;
+    border-color: #3b82f6;
+    color: #1d4ed8;
+}
+
+.pdm-filter-btn.active i {
+    color: #2563eb;
+}
+
+.pdm-search-box {
+    position: relative;
+    width: 260px;
+}
+
+.pdm-search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+.pdm-search-input {
+    width: 100%;
+    padding: 8px 12px 8px 34px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 13px;
+    background: #f8fafc;
+    transition: all 0.2s;
+}
+
+.pdm-search-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.pdm-btn-limpiar {
+    padding: 8px 12px;
+    border-radius: 6px;
+}
+
+.pdm-productos-section .compra-productos-wrapper {
+    max-height: 350px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* Custom Scrollbar for Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+}
+
+/* Custom Scrollbar for Webkit (Chrome/Edge/Safari) */
+.pdm-productos-section .compra-productos-wrapper::-webkit-scrollbar {
+    width: 6px;
+}
+
+.pdm-productos-section .compra-productos-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.pdm-productos-section .compra-productos-wrapper::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 20px;
+}
+
+.pdm-productos-section .compra-productos-wrapper::-webkit-scrollbar-thumb:hover {
+    background-color: #94a3b8;
+}
+
+/* Sticky Header con sombra para mantener el contexto visual al scrollear */
+.pdm-productos-section .compra-productos-wrapper thead th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #f8fafc;
+    /* Color de fondo sólido para tapar lo que scrollea por abajo */
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* Agregamos una sombra al contenedor del wrapper simulando profundidad bajo el header */
+.pdm-productos-section .compra-productos-wrapper {
+    background: linear-gradient(white 30%, rgba(255, 255, 255, 0)), linear-gradient(rgba(255, 255, 255, 0), white 70%) 0 100%, radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .1), rgba(0, 0, 0, 0)), radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .1), rgba(0, 0, 0, 0)) 0 100%;
+    background-repeat: no-repeat;
+    background-color: white;
+    background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+    background-attachment: local, local, scroll, scroll;
+}
+
+/* Footer Total */
+.pdm-footer {
+    background: #ffffff;
+    padding: 20px 24px;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
+    gap: 16px;
+    border-radius: 0 0 12px 12px;
+}
+
+.pdm-total-label {
+    font-size: 16px;
+    color: #64748b;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.pdm-total-valor {
+    font-size: 28px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+/* ==============================================================
+   MODAL EDITAR PROVEEDOR - REDISEÑO UI/UX
+   ============================================================== */
+
+/* Premium Form Inputs with Icons (Tab 1) */
+.input-icon-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.input-icon-wrapper i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    font-size: 14px;
+    transition: color 0.2s;
+    pointer-events: none;
+}
+
+.input-with-icon {
+    width: 100%;
+    padding: 10px 14px 10px 40px !important;
+}
+
+.input-with-icon:focus+i,
+.input-icon-wrapper input:focus~i {
+    color: #6366f1;
+}
+
+/* Espaciado mejorado en el form */
+#edit-proveedor-form .form-row {
+    gap: 24px;
+    margin-bottom: 20px;
+}
+
+#edit-prov-add-producto-dropdown,
+#edit-prov-productos-body {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+}
+
+#edit-prov-add-producto-dropdown.loading,
+#edit-prov-productos-body.loading {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* ==============================================================
+   MODAL DETALLES DE VENTA - PREMIUM DIGITAL RECEIPT (LIGHT THEME)
+   ============================================================== */
+
+.modal .modal-content.vd-modal-content.vd-light {
+    background-color: #ffffff;
+    border-radius: 16px !important;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15) !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    border: 1px solid #e2e8f0;
+    margin: 0;
+    width: 95% !important;
+    max-width: 1000px !important;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    color: #0f172a;
+}
+
+.vd-split-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    height: 100%;
+    min-height: 500px;
+}
+
+/* Sidebar (Columna Izquierda) */
+.vd-sidebar {
+    background: #f8fafc;
+    padding: 32px 24px;
+    border-right: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.vd-header-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: 0.5px;
+}
+
+.vd-header-brand i {
+    color: #0284c7;
+    font-size: 24px;
+}
+
+.vd-total-highlight {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.vd-total-highlight-label {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.vd-total-highlight-value {
+    font-size: 32px;
+    font-weight: 800;
+    color: #059669;
+    font-family: monospace;
+}
+
+.vd-id-badge {
+    font-size: 13px;
+    color: #64748b;
+    font-family: monospace;
+    margin-top: 4px;
+}
+
+.vd-meta-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.vd-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.vd-meta-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #64748b;
+    font-weight: 700;
+}
+
+.vd-meta-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.vd-meta-value i {
+    color: #94a3b8;
+    width: 16px;
+    text-align: center;
+}
+
+.vd-cash-summary {
+    background: #ffffff;
+    border: 1px dashed #cbd5e1;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: auto;
+}
+
+.vd-cash-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vd-cash-label {
+    font-size: 13px;
+    color: #64748b;
+}
+
+.vd-cash-value {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0284c7;
+    font-family: monospace;
+}
+
+/* Main Content (Columna Derecha) */
+.vd-main-content {
+    padding: 32px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.vd-section-title {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #94a3b8;
+    font-weight: 700;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.vd-table-container {
+    flex-grow: 1;
+    margin-bottom: 24px;
+}
+
+.vd-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.vd-table th {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #64748b;
+    font-weight: 600;
+    border-bottom: 1px solid #cbd5e1;
+}
+
+.vd-table th.col-num {
+    text-align: right;
+}
+
+.vd-table th.col-center {
+    text-align: center;
+}
+
+.vd-table td {
+    padding: 16px;
+    font-size: 14px;
+    color: #334155;
+    font-weight: 500;
+    border-bottom: 1px solid #f1f5f9;
+    transition: background 0.2s;
+}
+
+.vd-table tr:hover td {
+    background: #f8fafc;
+}
+
+.vd-table td.col-num {
+    text-align: right;
+    font-family: monospace;
+    font-size: 15px;
+}
+
+.vd-table td.col-center {
+    text-align: center;
+    font-family: monospace;
+    font-size: 15px;
+}
+
+.vd-totals-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 24px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.vd-totals-box {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.vd-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.vd-total-row span:last-child {
+    font-family: monospace;
+    font-size: 15px;
+    color: #0f172a;
+}
+
+.vd-total-row.discount {
+    color: #ef4444;
+}
+
+.vd-total-row.discount span:last-child {
+    color: #ef4444;
+}
+
+/* Close Button */
+.vd-close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.vd-close-btn:hover {
+    background: #ef4444;
+    color: white;
+    border-color: #ef4444;
+}
+
+/* Responsive Grid */
+@media (max-width: 768px) {
+    .vd-split-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .vd-sidebar {
+        border-right: none;
+        border-bottom: 1px solid #334155;
+    }
+}
+
+/* ========================================
+   ANIMACIONES UX/UI: VUELTO (CAMBIO)
+   ======================================== */
+.vuelto-toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #10b981;
+    /* Verde esmeralda para connotar dinero devuelto/éxito */
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.vuelto-toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* ==========================================================================
+   UI TOAST NOTIFICATIONS (UX/UI Designer Skill)
+   ========================================================================== */
+.ui-toast-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999999;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    pointer-events: none;
+}
+
+.ui-toast {
+    width: 380px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    pointer-events: auto;
+    animation: toastSlideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    transform-origin: bottom center;
+}
+
+.ui-toast.toast-exiting {
+    animation: toastFadeOut 0.4s ease forwards;
+}
+
+/* Accent border */
+.ui-toast::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.ui-toast.error::before {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.ui-toast.info::before {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.ui-toast-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    font-size: 24px;
+}
+
+.ui-toast.success .ui-toast-icon {
+    color: #10b981;
+}
+
+.ui-toast.error .ui-toast-icon {
+    color: #ef4444;
+}
+
+.ui-toast.info .ui-toast-icon {
+    color: #3b82f6;
+}
+
+.ui-toast-content {
+    flex: 1;
+    padding: 16px 16px 16px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ui-toast-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 4px 0;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.3px;
+}
+
+.ui-toast-message {
+    font-size: 13.5px;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.ui-toast-close {
+    background: none;
+    border: none;
+    color: #cbd5e1;
+    font-size: 18px;
+    cursor: pointer;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    transition: color 0.2s;
+}
+
+.ui-toast-close:hover {
+    color: #64748b;
+}
+
+.ui-toast-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: rgba(16, 185, 129, 0.15);
+    width: 100%;
+}
+
+.ui-toast-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #34d399);
+    width: 100%;
+    transform-origin: left;
+    animation: toastProgress linear forwards;
+}
+
+@keyframes toastSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes toastFadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(10px) scale(0.95);
+    }
+}
+
+@keyframes toastProgress {
+    from {
+        transform: scaleX(1);
+    }
+
+    to {
+        transform: scaleX(0);
+    }
+}
+
+/* ==========================================================================
+   INLINE ERROR STYLES
+   ========================================================================== */
+.input-error {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.1) !important;
+}
+
+.error-message {
+    color: #ef4444;
+    font-size: 12.5px;
+    margin-top: 4px;
+    display: none;
+    /* hidden by default */
+    align-items: center;
+    animation: fadeInError 0.3s ease;
+}
+
+.error-message i {
+    margin-right: 6px;
+}
+
+@keyframes fadeInError {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE INPUTS FOR TABLE
+   ========================================================================== */
+.responsive-input {
+    min-width: 70px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+/* Auto-expanding textareas to look like inputs */
+textarea.auto-expand {
+    min-height: auto !important;
+    height: 45px;
+    overflow: hidden;
+    resize: none !important;
+    box-sizing: border-box;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   FLOATING ACTION BAR FOR STOCK OC
+   ========================================================================== */
+.floating-action-bar {
+    position: fixed;
+    bottom: 24px;
+    left: 55%;
+    transform: translateX(-50%) translateY(120px);
+    background: #0f172a;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    z-index: 1000;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+}
+
+.floating-action-bar.visible {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.action-bar-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 14.5px;
+    font-weight: 500;
+}
+
+.action-bar-separator {
+    color: #475569;
+}
+
+#stock-oc-selected-provider {
+    color: #94a3b8;
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ==========================================================================
+   SLIDE-OVER PANEL FOR OC
+   ========================================================================== */
+
+
+.form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+/* Botón Toggle de Orden de Compra en Inventario */
+.oc-checkbox-col {
+    width: 150px;
+    text-align: center !important;
+}
+
+.btn-oc-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid transparent;
+    white-space: nowrap;
+}
+
+.btn-oc-toggle.btn-oc-inactive {
+    background-color: #f1f5f9;
+    color: #475569;
+    border-color: #cbd5e1;
+}
+
+.btn-oc-toggle.btn-oc-inactive:hover {
+    background-color: #e2e8f0;
+    color: #1e293b;
+    border-color: #94a3b8;
+}
+
+.btn-oc-toggle.btn-oc-active {
+    background-color: #10b981;
+    color: white;
+    border-color: #10b981;
+    box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+}
+
+.btn-oc-toggle.btn-oc-active:hover {
+    background-color: #059669;
+    border-color: #059669;
+}
+
+.btn-oc-toggle:disabled {
+    background-color: #f8fafc;
+    color: #cbd5e1;
+    border-color: #e2e8f0;
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.6;
+}
+
+/* Selected Items in Slideover Form */
+.oc-productos-selected-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 20px;
+}
+
+.oc-productos-selected-card h5 {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    color: #475569;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.data-table.compact th,
+.data-table.compact td {
+    padding: 8px 10px;
+    font-size: 13px;
+}
+
+/* Cost Summary */
+.oc-summary-card {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 16px;
+}
+
+.oc-summary-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+    border-top: 1px dashed #cbd5e1;
+    padding-top: 12px;
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13.5px;
+    color: #475569;
+}
+
+.summary-line.total-line {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+    border-top: 1px solid #cbd5e1;
+    padding-top: 8px;
+    margin-top: 4px;
+}
+
+/* Rediseño Modal Formato Factura / Documento de Orden de Compra */
+#oc-modal-overlay .modal-content.modal-large {
+    max-width: 1200px;
+    width: 95%;
+    height: 94vh;
+    padding: 24px;
+    border-radius: 16px;
+    overflow: visible; /* Cambiado a visible para que la cruz flotante no sea recortada */
+    position: relative; /* Base de anclaje para posicionamiento absoluto */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+#oc-modal-overlay .modal-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+#oc-modal-overlay #orden-compra-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+/* Contenedor general del formulario en formato factura - Split Layout */
+#oc-modal-overlay .oc-invoice-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+    min-height: 0;
+}
+
+/* Cabecera horizontal del documento */
+#oc-modal-overlay .oc-invoice-header-block {
+    display: grid;
+    grid-template-columns: 1.4fr 0.9fr 0.9fr 1fr;
+    gap: 20px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 16px 20px;
+    border-radius: 12px;
+}
+
+/* Cuerpo dividido: Tabla de productos a la izquierda, formulario y totales a la derecha */
+#oc-modal-overlay .oc-invoice-split-body {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 24px;
+    flex: 1;
+    min-height: 0;
+}
+
+/* Columna Izquierda: Tabla */
+#oc-modal-overlay .oc-invoice-table-column {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    min-width: 0; /* Muro de contención para evitar que la tabla ensanche la columna */
+}
+
+/* Columna Derecha: Dirección, Observaciones y Totales (SIN SCROLL!) */
+#oc-modal-overlay .oc-invoice-details-column {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-height: 0;
+    min-width: 0; /* Evita ensanchamiento por inputs */
+}
+
+#oc-modal-overlay .oc-productos-selected-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+/* Tarjeta para Dirección y Observaciones */
+#oc-modal-overlay .oc-delivery-info-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px; /* Espacio incrementado para alojar mensajes de error absolutos */
+}
+
+/* Estilos de tabla fija para evitar desbordes */
+#oc-modal-overlay .data-table.compact {
+    table-layout: fixed;
+    width: 100%;
+}
+
+#oc-modal-overlay .data-table.compact td {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+/* Evitar el salto de contenido por mensajes de error en el modal */
+#oc-modal-overlay .form-group {
+    position: relative;
+}
+
+#oc-modal-overlay .error-message {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    font-size: 11px;
+    margin-top: 2px;
+    z-index: 5;
+    background: transparent;
+    line-height: 1.1;
+}
+
+#oc-modal-overlay .qty-stepper .qty-input {
+    width: 55px; /* Reducir ancho para evitar desbordes */
+}
+
+#oc-modal-overlay .data-table td:nth-child(3) {
+    text-align: left;
+    padding-left: 20px; /* Anclar contenedor a la izquierda para que crezca hacia la derecha */
+}
+
+#oc-modal-overlay .input-money .inline-edit-input {
+    width: 110px; /* Más ancho, expandiéndose hacia la derecha */
+    text-align: right !important; /* Forzar alineación a la derecha de las cifras */
+}
+
+/* Tarjeta para Descuento, IVA y totales */
+#oc-modal-overlay .oc-summary-card {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+#oc-modal-overlay textarea.auto-expand {
+    min-height: 55px;
+    max-height: 80px;
+    font-size: 13.5px;
+    padding: 10px 12px;
+}
+
+#oc-modal-overlay .table-responsive {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+}
+
+/* Custom slim scrollbar for table container */
+#oc-modal-overlay .table-responsive::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+#oc-modal-overlay .table-responsive::-webkit-scrollbar-track {
+    background: transparent;
+}
+#oc-modal-overlay .table-responsive::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+#oc-modal-overlay .table-responsive::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Sticky header for the table inside the modal */
+#oc-modal-overlay .data-table.compact th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #f1f5f9;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    color: #475569;
+    font-weight: 600;
+}
+
+/* Footer global del formulario de Orden de Compra */
+#oc-modal-overlay .oc-modal-form-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e2e8f0;
+    margin-top: 16px;
+    background: transparent;
+}
+
+/* Responsividad para pantallas medianas (notebooks chicas o tablets) */
+@media (max-width: 992px) {
+    #oc-modal-overlay .oc-invoice-container {
+        overflow-y: auto;
+    }
+
+    #oc-modal-overlay .oc-invoice-header-block {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    #oc-modal-overlay .oc-invoice-split-body {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    #oc-modal-overlay .oc-invoice-table-column {
+        min-height: 280px;
+    }
+    
+    #oc-modal-overlay .modal-content.modal-large {
+        max-width: 800px;
+        height: 95vh;
+        max-height: 95vh;
+        padding: 20px;
+    }
+}
+
+/* Optimización responsive para el modal de Orden de Compra (compatible con 100% zoom) */
+#oc-modal-overlay .modal-content.modal-large {
+    max-height: 94vh;
+}
+
+#oc-modal-overlay .oc-delivery-info-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media (max-height: 850px) {
+    #oc-modal-overlay .modal-content.modal-large {
+        padding: 16px 20px;
+    }
+
+    #oc-modal-overlay .modal-header {
+        margin-bottom: 8px;
+    }
+
+    #oc-modal-overlay .modal-header h3 {
+        font-size: 1.1rem;
+    }
+
+    #oc-modal-overlay .oc-invoice-container {
+        gap: 12px;
+    }
+
+    #oc-modal-overlay .oc-invoice-header-block {
+        padding: 10px 14px;
+        gap: 12px;
+    }
+
+    #oc-modal-overlay .oc-invoice-header-block .form-group label {
+        font-size: 12px;
+        margin-bottom: 3px;
+    }
+
+    #oc-modal-overlay .oc-invoice-header-block .form-group input {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    #oc-modal-overlay .oc-invoice-split-body {
+        gap: 14px;
+    }
+
+    #oc-modal-overlay .oc-delivery-info-card {
+        padding: 10px 14px;
+        gap: 8px;
+    }
+
+    #oc-modal-overlay .oc-delivery-info-card label {
+        font-size: 12px;
+        margin-bottom: 3px;
+    }
+
+    #oc-modal-overlay .oc-summary-card {
+        padding: 12px 14px;
+    }
+
+    #oc-modal-overlay .oc-summary-card .form-row-2 {
+        margin-bottom: 6px;
+        gap: 10px;
+    }
+
+    #oc-modal-overlay .oc-summary-card label {
+        font-size: 12px;
+        margin-bottom: 3px;
+    }
+
+    #oc-modal-overlay .oc-summary-rows {
+        gap: 4px;
+        margin-top: 6px;
+        padding-top: 6px;
+    }
+
+    #oc-modal-overlay .summary-line {
+        font-size: 12.5px;
+    }
+
+    #oc-modal-overlay .summary-line.total-line {
+        font-size: 15px;
+        margin-top: 2px;
+        padding-top: 6px;
+    }
+
+    #oc-modal-overlay .oc-modal-form-footer {
+        padding-top: 10px;
+        margin-top: 10px;
+    }
+}

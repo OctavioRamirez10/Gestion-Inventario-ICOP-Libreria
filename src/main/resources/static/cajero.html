@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión Inventario - Panel Cajero</title>
+    <link rel="icon" type="image/jpeg" href="images/LOGO%20SISTEMA.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/dashboard-informes.css">
+    <link rel="stylesheet" href="css/caja-dashboard.css">
+
+    <style>
+        .data-table {
+            overflow: visible !important;
+        }
+
+        .table-container-product .data-table {
+            overflow: visible !important;
+        }
+
+        .data-table th:first-child {
+            border-top-left-radius: 8px;
+        }
+
+        .data-table th:last-child {
+            border-top-right-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/LOGO%20SISTEMA.jpg" alt="Logo" class="sidebar-logo">
+                <h3>Gestión Inventario</h3>
+                <p>Navegación</p>
+            </div>
+            <ul class="sidebar-menu">
+
+
+                <li><a href="#" data-section="caja"><i class="fas fa-cash-register"></i> <span
+                            class="text">Caja</span></a></li>
+
+
+                <li><a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> <span class="text">Salir</span></a>
+                </li>
+            </ul>
+        </aside>
+
+        <main class="main-content" tabindex="-1">
+            <header class="main-header">
+                <div class="header-left">
+                    <button id="sidebar-toggle" class="btn-icon" style="margin-right: 15px; font-size: 18px;">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="header-title">
+                        <i id="section-icon" class="fas fa-home"></i>
+                        <h2 id="section-title">Principal</h2>
+                    </div>
+                </div>
+                <div class="user-info">
+                    <i class="fas fa-user"></i>
+                    <div>
+                        <span id="header-user-name">Cargando...</span>
+                        <span id="header-user-role">Cargando...</span>
+                    </div>
+                </div>
+            </header>
+
+
+
+
+
+
+
+            <!-- Modal Detalle Producto (Rediseño Premium) -->
+            <div id="product-detail-modal" class="modal-overlay" style="display: none;">
+                <div class="modal-content modal-large"
+                    style="position: relative; width: 95%; max-width: 1100px; min-height: 70vh; max-height: 95vh; display: flex; flex-direction: column; border-radius: 16px; overflow: visible; border: 1px solid #e2e8f0; box-shadow: 0 25px 60px rgba(0,0,0,0.15);">
+
+                    <!-- Botón de cerrar flotante -->
+                    <button id="product-detail-close" class="modal-close"
+                        style="position: absolute; top: -16px; right: -16px; background: white; border: 2px solid #e2e8f0; color: #475569 !important; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
+                        onmouseenter="this.style.background='#ef4444'; this.style.color='white'; this.style.borderColor='#ef4444'; this.style.transform='scale(1.1)';"
+                        onmouseleave="this.style.background='white'; this.style.color='#475569'; this.style.borderColor='#e2e8f0'; this.style.transform='scale(1)';">
+                        <i class="fas fa-times" style="font-size: 16px;"></i>
+                    </button>
+
+                    <!-- Product Banner Header (Teal/Emerald) -->
+                    <div
+                        style="background: linear-gradient(135deg, #0f172a 0%, #115e59 100%); padding: 32px 36px 28px; border-radius: 16px 16px 0 0; position: relative; overflow: hidden;">
+                        <!-- Patrones decorativos sutiles -->
+                        <div
+                            style="position: absolute; top: -30px; right: -30px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%); border-radius: 50%;">
+                        </div>
+                        <div
+                            style="position: absolute; bottom: -40px; left: -20px; width: 140px; height: 140px; background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%); border-radius: 50%;">
+                        </div>
+                        <div
+                            style="position: absolute; top: 50%; right: 60px; width: 80px; height: 80px; background: radial-gradient(circle, rgba(20,184,166,0.15) 0%, transparent 70%); border-radius: 50%;">
+                        </div>
+
+                        <div style="display: flex; align-items: center; gap: 20px; position: relative; z-index: 1;">
+                            <!-- Icono Producto -->
+                            <div
+                                style="width: 64px; height: 64px; background: rgba(20,184,166,0.15); border-radius: 16px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px); border: 1px solid rgba(20,184,166,0.25); flex-shrink: 0;">
+                                <i class="fas fa-box-open" style="color: #5eead4; font-size: 26px;"></i>
+                            </div>
+                            <!-- Info Principal -->
+                            <div style="flex: 1; min-width: 0;">
+                                <h3 id="detail-nombre"
+                                    style="margin: 0 0 8px; color: white; font-size: 22px; font-weight: 700; letter-spacing: -0.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                </h3>
+                                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                                    <!-- Badge Categoría -->
+                                    <span
+                                        style="display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.1); padding: 4px 12px; border-radius: 6px; color: rgba(255,255,255,0.8); font-size: 13px; font-weight: 500; border: 1px solid rgba(255,255,255,0.1);">
+                                        <i class="fas fa-tag" style="font-size: 11px; opacity: 0.7;"></i>
+                                        <span id="detail-categoria" style="font-weight: 600; color: white;"></span>
+                                    </span>
+                                    <!-- Badge Estado Stock (dinámico) -->
+                                    <span id="detail-stock-estado-badge"
+                                        style="display: inline-flex; align-items: center; gap: 5px; background: rgba(16,185,129,0.25); padding: 4px 10px; border-radius: 6px; color: rgba(255,255,255,0.9); font-size: 12px; font-weight: 600; border: 1px solid rgba(16,185,129,0.3);">
+                                        <span style="font-size: 8px; line-height: 1;">●</span>
+                                        <span id="detail-stock-estado"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab Bar (idéntico al admin) -->
+                    <div class="product-detail-tabs"
+                        style="background: white; border-bottom: 1px solid #e2e8f0; padding: 16px 28px 0;">
+                        <button type="button" class="product-detail-tab active" data-tab="product-detail-tab-info">
+                            <i class="fas fa-info-circle"></i> Información
+                        </button>
+                        <button type="button" class="product-detail-tab" data-tab="product-detail-tab-proveedores">
+                            <i class="fas fa-truck"></i> Proveedores
+                            <span id="product-detail-tab-proveedores-badge" class="product-detail-tab-badge">0</span>
+                        </button>
+                    </div>
+
+                    <!-- Modal Body con scroll -->
+                    <div class="modal-body" style="flex: 1; overflow-y: auto; padding: 0; background: #f8fafc;">
+
+                        <!-- Tab 1: Información -->
+                        <div id="product-detail-tab-info" class="product-detail-tab-content">
+
+                            <!-- Quick Info Cards (solo 2: Precio + Stock) -->
+                            <div style="display: flex; gap: 16px; padding: 24px 28px 20px; flex-wrap: wrap;">
+
+                                <!-- Card: Precio de Venta -->
+                                <div style="flex: 1; min-width: 220px; background: white; border-radius: 12px; padding: 18px 20px; border: 1px solid #e2e8f0; transition: all 0.2s; cursor: default;"
+                                    onmouseenter="this.style.borderColor='#10b981'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.08)';"
+                                    onmouseleave="this.style.borderColor='#e2e8f0'; this.style.boxShadow='none';">
+                                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
+                                        <div
+                                            style="width: 36px; height: 36px; background: #ecfdf5; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                            <i class="fas fa-dollar-sign" style="color: #10b981; font-size: 15px;"></i>
+                                        </div>
+                                        <span
+                                            style="font-size: 11px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px;">Precio
+                                            de Venta</span>
+                                    </div>
+                                    <div id="detail-precio"
+                                        style="font-size: 20px; font-weight: 700; color: #065f46; word-break: break-word; line-height: 1.4; text-align: right;">
+                                    </div>
+                                </div>
+
+                                <!-- Card: Stock Actual -->
+                                <div style="flex: 1; min-width: 220px; background: white; border-radius: 12px; padding: 18px 20px; border: 1px solid #e2e8f0; transition: all 0.2s; cursor: default;"
+                                    onmouseenter="this.style.borderColor='#f59e0b'; this.style.boxShadow='0 4px 12px rgba(245,158,11,0.08)';"
+                                    onmouseleave="this.style.borderColor='#e2e8f0'; this.style.boxShadow='none';">
+                                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
+                                        <div
+                                            style="width: 36px; height: 36px; background: #fffbeb; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                            <i class="fas fa-warehouse" style="color: #f59e0b; font-size: 15px;"></i>
+                                        </div>
+                                        <span
+                                            style="font-size: 11px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px;">Stock
+                                            Actual</span>
+                                    </div>
+                                    <div id="detail-stock-actual"
+                                        style="font-size: 20px; font-weight: 700; color: #92400e; word-break: break-word; line-height: 1.4; text-align: right;">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Secciones de Detalles -->
+                            <div style="padding: 0 28px 28px;">
+
+                                <!-- Información General -->
+                                <div
+                                    style="background: white; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; margin-bottom: 16px;">
+                                    <div
+                                        style="display: flex; align-items: center; padding: 18px 22px; border-bottom: 1px solid #f1f5f9;">
+                                        <h4
+                                            style="margin: 0; font-size: 15px; font-weight: 700; color: #1e293b; display: flex; align-items: center; gap: 8px;">
+                                            <i class="fas fa-info-circle" style="color: #64748b; font-size: 13px;"></i>
+                                            Información General
+                                        </h4>
+                                    </div>
+                                    <div style="padding: 20px 22px;">
+                                        <div
+                                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px;">
+                                            <div>
+                                                <span
+                                                    style="font-size: 11px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">Descripción</span>
+                                                <span id="detail-descripcion"
+                                                    style="font-size: 14px; font-weight: 500; color: #1e293b; line-height: 1.5;"></span>
+                                            </div>
+                                            <div>
+                                                <span
+                                                    style="font-size: 11px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">Fecha
+                                                    de Creación</span>
+                                                <span id="detail-fecha"
+                                                    style="font-size: 14px; font-weight: 500; color: #1e293b; display: flex; align-items: center; gap: 6px;">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Configuración de Stock -->
+                                <div
+                                    style="background: white; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden;">
+                                    <div
+                                        style="display: flex; align-items: center; padding: 18px 22px; border-bottom: 1px solid #f1f5f9;">
+                                        <h4
+                                            style="margin: 0; font-size: 15px; font-weight: 700; color: #1e293b; display: flex; align-items: center; gap: 8px;">
+                                            <i class="fas fa-sliders-h" style="color: #64748b; font-size: 13px;"></i>
+                                            Configuración de Stock
+                                        </h4>
+                                    </div>
+                                    <div style="padding: 20px 22px;">
+                                        <div
+                                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 18px;">
+                                            <div>
+                                                <span
+                                                    style="font-size: 11px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">Stock
+                                                    Mínimo</span>
+                                                <span id="detail-stock-min"
+                                                    style="font-size: 16px; font-weight: 600; color: #1e293b;"></span>
+                                            </div>
+                                            <div>
+                                                <span
+                                                    style="font-size: 11px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">Stock
+                                                    Máximo</span>
+                                                <span id="detail-stock-max"
+                                                    style="font-size: 16px; font-weight: 600; color: #1e293b;"></span>
+                                            </div>
+                                            <div>
+                                                <span
+                                                    style="font-size: 11px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">Estado</span>
+                                                <span id="detail-stock-estado-text"></span>
+                                            </div>
+                                        </div>
+                                        <div
+                                            style="margin-top: 14px; padding-top: 14px; border-top: 1px solid #f1f5f9;">
+                                            <span style="font-size: 11px; color: #94a3b8; font-style: italic;">
+                                                <i class="fas fa-info-circle"></i> Para ver los proveedores asociados,
+                                                consultá la pestaña <strong>Proveedores</strong>.
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Tab 2: Proveedores -->
+                        <div id="product-detail-tab-proveedores" class="product-detail-tab-content"
+                            style="display: none;">
+                            <div style="padding: 24px 28px;">
+                                <div
+                                    style="background: white; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden;">
+                                    <!-- Header de la tabla -->
+                                    <div
+                                        style="display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; border-bottom: 1px solid #f1f5f9;">
+                                        <h4
+                                            style="margin: 0; font-size: 15px; font-weight: 700; color: #1e293b; display: flex; align-items: center; gap: 8px;">
+                                            <i class="fas fa-truck" style="color: #64748b; font-size: 13px;"></i>
+                                            Proveedores Asociados
+                                        </h4>
+                                    </div>
+                                    <div style="max-height: 360px; overflow-y: auto;" id="detail-proveedores-container">
+                                        <table class="data-table" style="table-layout: fixed; width: 100%; margin: 0;">
+                                            <thead>
+                                                <tr style="background: #f8fafc;">
+                                                    <th
+                                                        style="width: 35%; padding: 12px 22px; font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #e2e8f0;">
+                                                        Proveedor</th>
+                                                    <th
+                                                        style="width: 30%; padding: 12px 22px; font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #e2e8f0;">
+                                                        Teléfono</th>
+                                                    <th
+                                                        style="width: 35%; padding: 12px 22px; font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #e2e8f0;">
+                                                        Email</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="detail-proveedores-body">
+                                                <tr>
+                                                    <td colspan="3"
+                                                        style="text-align: center; color: #94a3b8; padding: 20px;">
+                                                        <i class="fas fa-spinner fa-spin"></i> Cargando...
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="modal-footer"
+                        style="border-top: 1px solid #e2e8f0; padding: 16px 28px; background: white; border-radius: 0 0 16px 16px;">
+                        <button class="btn-outline" id="product-detail-close-btn"
+                            style="padding: 10px 28px; border-radius: 10px; font-weight: 600; font-size: 14px;">
+                            Cerrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+
+    <!-- SECCIÓN CAJA -->
+    <section id="caja-section" class="spa-section" style="display:none; padding: 40px;">
+
+        <div id="caja-operaciones-container">
+
+            <!-- Tarjeta Principal Hero -->
+            <div id="caja-panel-apertura"
+                style="width: 80%; margin: 0 auto; background: white; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 10px 40px rgba(0,0,0,0.08); display: flex; flex-direction: column;">
+
+                <!-- Hero Header Interno -->
+                <div
+                    style="background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%); padding: 40px; position: relative; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <div
+                        style="position: absolute; top: 0; right: 0; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 60%); border-radius: 50%; transform: translate(30%, -30%);">
+                    </div>
+
+                    <div style="display: flex; align-items: center; gap: 24px; position: relative; z-index: 1;">
+                        <div
+                            style="width: 64px; height: 64px; background: rgba(255,255,255,0.15); border-radius: 16px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); flex-shrink: 0; box-shadow: 0 8px 16px rgba(0,0,0,0.1);">
+                            <i class="fas fa-cash-register" style="color: white; font-size: 28px;"></i>
+                        </div>
+                        <div id="caja-titulo-apertura">
+                            <h3
+                                style="margin: 0 0 6px 0; color: white; font-size: 28px; font-weight: 800; letter-spacing: -0.5px;">
+                                Apertura de Caja</h3>
+                            <p
+                                style="margin: 0; color: rgba(255,255,255,0.8); font-size: 15px; font-weight: 400; max-width: 600px;">
+                                Inicia el turno registrando el saldo inicial real. Esto habilitará el registro
+                                de compras y ventas garantizando la integridad de los fondos.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel Inferior (Formulario y Datos) -->
+                <div style="padding: 40px; background: white;">
+
+                    <!-- Badges de Información -->
+                    <div
+                        style="display: flex; gap: 24px; margin-bottom: 40px; padding-bottom: 32px; border-bottom: 1px solid #f1f5f9;">
+                        <div
+                            style="flex: 1; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px;">
+                            <div
+                                style="width: 48px; height: 48px; border-radius: 12px; background: #e0e7ff; color: #4f46e5; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                                <i class="fas fa-history"></i>
+                            </div>
+                            <div>
+                                <span
+                                    style="display: block; font-size: 12px; font-weight: 700; color: #64748b; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 4px;">Cierre
+                                    Anterior</span>
+                                <span id="caja-saldo-anterior"
+                                    style="font-size: 22px; font-weight: 800; color: #0f172a; letter-spacing: -0.5px;">$
+                                    0</span>
+                                <!-- Contexto Visual del Cierre Anterior -->
+                                <div id="caja-contexto-cierre" style="margin-top: 8px; display: none;">
+                                    <div
+                                        style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; background: #f1f5f9; border-radius: 6px; border: 1px solid #e2e8f0; font-size: 11px; font-weight: 600; color: #475569;">
+                                        <i id="caja-contexto-icono" class="fas fa-info-circle"></i>
+                                        <span id="caja-contexto-texto">Cargando contexto...</span>
+                                    </div>
+                                    <div id="caja-contexto-operador"
+                                        style="font-size: 11px; color: #64748b; margin-top: 6px; font-weight: 500; display: flex; align-items: center; gap: 4px;">
+                                        <i class="fas fa-user-clock" style="font-size: 10px;"></i>
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            style="flex: 1; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px;">
+                            <div
+                                style="width: 48px; height: 48px; border-radius: 12px; background: #dbeafe; color: #2563eb; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <div>
+                                <span
+                                    style="display: block; font-size: 12px; font-weight: 700; color: #64748b; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 4px;">Operador
+                                    Actual</span>
+                                <span id="caja-operador-nombre"
+                                    style="font-size: 18px; font-weight: 700; color: #1e293b;">Cargando...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form id="form-apertura-caja" novalidate style="display: flex; flex-direction: column; gap: 32px;">
+
+                        <!-- Monto Inicial -->
+                        <div class="form-group" style="margin: 0;">
+                            <label for="caja-monto-inicial"
+                                style="font-size: 14px; font-weight: 700; color: #334155; margin-bottom: 12px; display: block; letter-spacing: 0.3px;">
+                                Monto Inicial en Efectivo Físico <span style="color: #ef4444;">*</span>
+                            </label>
+                            <div style="position: relative; width: 100%; max-width: 400px;">
+                                <i class="fas fa-dollar-sign"
+                                    style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); font-size: 24px; color: #94a3b8; font-weight: 600;"></i>
+                                <input type="text" id="caja-monto-inicial" autocomplete="off" required maxlength="13"
+                                    style="width: 100%; padding: 20px 20px 20px 56px; font-size: 24px; font-weight: 800; color: #0f172a; background: #f8fafc; border: 2px solid #cbd5e1; border-radius: 12px; outline: none; transition: all 0.2s; letter-spacing: -0.5px;"
+                                    onfocus="this.style.background='white'; this.style.borderColor='#1e3a5f'; this.style.boxShadow='0 0 0 4px rgba(30, 58, 95, 0.1)';"
+                                    onblur="this.style.background='#f8fafc'; this.style.borderColor='#cbd5e1'; this.style.boxShadow='none';">
+                            </div>
+                            <span style="display: block; margin-top: 10px; font-size: 13px; color: #64748b;">
+                                Ingresa el dinero físico con el que cuentas en la caja registradora al comenzar
+                                el turno.
+                            </span>
+                            <div id="caja-monto-warning"
+                                style="display: none; color: #ef4444; margin-top: 10px; font-size: 13px; font-weight: 600; padding: 12px; background: #fef2f2; border-radius: 8px; border: 1px solid #fecaca; width: fit-content;">
+                                <i class="fas fa-exclamation-triangle" style="margin-right: 6px;"></i> El monto
+                                difiere del cierre anterior. Quedará registrado en el historial.
+                            </div>
+                        </div>
+
+                        <!-- Observaciones -->
+                        <div class="form-group" style="margin: 0;">
+                            <label for="caja-observaciones"
+                                style="font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 8px; display: block; letter-spacing: 0.3px;">
+                                Observaciones de Apertura (Opcional)
+                            </label>
+                            <div style="position: relative;">
+                                <i class="fas fa-align-left"
+                                    style="position: absolute; left: 16px; top: 16px; color: #94a3b8;"></i>
+                                <textarea id="caja-observaciones" rows="3" maxlength="255"
+                                    placeholder="Ej: Faltaban billetes chicos del turno anterior..."
+                                    style="width: 100%; padding: 16px 16px 16px 44px; border: 1px solid #cbd5e1; border-radius: 12px; font-size: 14px; background: #f8fafc; transition: all 0.2s; outline: none; resize: none; color: #334155; font-family: inherit;"
+                                    onfocus="this.style.background='white'; this.style.borderColor='#1e3a5f'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 95, 0.1)';"
+                                    onblur="this.style.background='#f8fafc'; this.style.borderColor='#cbd5e1'; this.style.boxShadow='none';"></textarea>
+                                <div style="text-align: right; font-size: 12px; color: #64748b; margin-top: 4px;">
+                                    <span id="char-count-obs-apertura">0</span>/255
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="caja-error-message" class="error-message"
+                            style="display: none; text-align: center; margin: 0; padding: 12px; background: #fef2f2; border-radius: 8px; border: 1px solid #fecaca; color: #ef4444; font-weight: 600;">
+                        </div>
+
+                        <!-- Botón Submit -->
+                        <div
+                            style="margin-top: 8px; padding-top: 32px; border-top: 1px solid #f1f5f9; display: flex; gap: 16px; justify-content: flex-end; align-items: center;">
+                            <button type="button" id="btn-abrir-caja" class="btn-primary"
+                                style="padding: 16px 40px; border: none; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; font-weight: 700; border-radius: 12px; cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3); font-size: 16px; display: flex; align-items: center; gap: 12px; position: relative; overflow: hidden;"
+                                onmouseenter="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 15px 30px rgba(37, 99, 235, 0.4)';"
+                                onmouseleave="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 25px rgba(37, 99, 235, 0.3)';">
+                                <i class="fas fa-lock-open" style="font-size: 18px;"></i> Iniciar Operaciones de
+                                Turno
+                            </button>
+
+                            <button type="button" class="btn-outline"
+                                onclick="document.getElementById('form-apertura-caja').reset(); document.getElementById('caja-monto-warning').style.display='none'; document.getElementById('caja-error-message').style.display='none';"
+                                style="padding: 12px 24px; border: 1px solid transparent; background: transparent; color: #64748b; font-weight: 600; border-radius: 8px; cursor: pointer; transition: all 0.2s; font-size: 14px; display: flex; align-items: center; gap: 8px;"
+                                onmouseenter="this.style.background='#f1f5f9'; this.style.color='#475569';"
+                                onmouseleave="this.style.background='transparent'; this.style.color='#64748b';">
+                                <i class="fas fa-eraser"></i> Limpiar Campos
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div id="caja-panel-cierre" style="display: none; width: 100%;">
+                <!-- HERO KPI: Estado de Caja Empleado -->
+                <div class="caja-kpi-hero">
+                    <div class="caja-kpi-hero-main">
+                        <span class="kpi-label">
+                            <i class="fas fa-cash-register" style="margin-right: 8px;"></i>
+                            Estado de la Caja
+                        </span>
+                        <span class="kpi-value" style="font-size: 28px; color: #10b981;">Turno en Curso</span>
+                    </div>
+                    <div class="caja-kpi-hero-meta">
+                        <div class="meta-row">
+                            <i class="fas fa-circle" style="color: #10b981; font-size: 8px;"></i>
+                            <span>Sesión:</span>
+                            <strong style="color: #10b981;">Activa</strong>
+                        </div>
+                        <div class="meta-row">
+                            <i class="fas fa-wallet"></i>
+                            <span>Monto Inicial:</span>
+                            <strong id="caja-resumen-inicial">$ 0,00</strong>
+                        </div>
+                        <div class="meta-row">
+                            <i class="fas fa-user"></i>
+                            <span>Operador:</span>
+                            <strong id="caja-kpi-operador">Empleado Actual</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulario de Cierre Ciego Expandido y Premium -->
+                <div class="caja-card" style="max-width: 1100px; margin: 20px 0; padding: 40px 50px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+
+                        <!-- Columna de Instrucciones -->
+                        <div>
+                            <div
+                                style="width: 64px; height: 64px; background: #e0e7ff; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
+                                <i class="fas fa-shield-alt" style="font-size: 28px; color: #6366f1;"></i>
+                            </div>
+                            <h3
+                                style="margin: 0 0 16px 0; font-size: 28px; color: #0f172a; font-weight: 800; letter-spacing: -0.5px;">
+                                Cierre de Turno Seguro
+                            </h3>
+                            <p style="font-size: 15px; color: #64748b; line-height: 1.7; margin: 0 0 24px 0;">
+                                Para finalizar tu turno, por favor cuenta cuidadosamente todo el dinero físico
+                                disponible en la caja registradora e ingresa el monto total.
+                            </p>
+                            <ul
+                                style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px;">
+                                <li
+                                    style="display: flex; align-items: center; gap: 12px; font-size: 15px; color: #475569; font-weight: 500;">
+                                    <i class="fas fa-check-circle" style="color: #10b981; font-size: 18px;"></i>
+                                    Incluye todos los billetes
+                                </li>
+                                <li
+                                    style="display: flex; align-items: center; gap: 12px; font-size: 15px; color: #475569; font-weight: 500;">
+                                    <i class="fas fa-check-circle" style="color: #10b981; font-size: 18px;"></i>
+                                    El sistema validará el arqueo automáticamente
+                                </li>
+                                <li
+                                    style="display: flex; align-items: center; gap: 12px; font-size: 15px; color: #475569; font-weight: 500;">
+                                    <i class="fas fa-check-circle" style="color: #10b981; font-size: 18px;"></i>
+                                    Reporta cualquier anomalía en observaciones
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Columna del Formulario -->
+                        <div
+                            style="background: #f8fafc; padding: 36px; border-radius: 20px; border: 1px solid #f1f5f9;">
+                            <div style="display: none;">
+                                <span id="caja-sidebar-efectivo-esperado">0,00</span>
+                            </div>
+                            <form id="form-cierre-caja">
+                                <div class="form-group" style="margin-bottom: 24px;">
+                                    <label for="caja-monto-final"
+                                        style="font-size: 14px; font-weight: 700; color: #334155; margin-bottom: 12px; display:block;">Efectivo
+                                        Físico Total en Caja</label>
+                                    <div style="position: relative;">
+                                        <span
+                                            style="position: absolute; left: 18px; top: 50%; transform: translateY(-50%); font-size: 18px; color: #64748b; font-weight: bold;">$</span>
+                                        <input type="text" id="caja-monto-final" required placeholder="0"
+                                            style="padding-left: 45px; font-size: 22px; height: 60px; font-weight: 800; background: white; border-color: #cbd5e1; border-radius: 14px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);">
+                                    </div>
+                                    <div class="error-message" id="error-caja-monto-final" style="display: none; font-size: 13px; color: #ef4444; margin-top: 6px; font-weight: 600;"></div>
+                                    <div id="caja-monto-final-warning"
+                                        style="display: none; color: #c2410c; margin-top: 8px; font-size: 13px;">
+                                    </div>
+                                </div>
+                                <!-- Fondo Fijo oculto para el empleado -->
+                                <input type="hidden" id="caja-fondo-fijo" value="0">
+                                <div class="form-group" style="margin-bottom: 32px;">
+                                    <label for="caja-observaciones-cierre"
+                                        style="font-size: 14px; font-weight: 700; color: #334155; margin-bottom: 12px; display:block;">Observaciones
+                                        (Opcional)</label>
+                                    <textarea id="caja-observaciones-cierre" rows="3" maxlength="255"
+                                        placeholder="Notas para el administrador..."
+                                        style="font-size: 14px; background: white; border-radius: 14px; padding: 16px; border-color: #cbd5e1; width: 100%;"></textarea>
+                                    <div style="text-align: right; font-size: 11px; color: #94a3b8; margin-top: 4px;">
+                                        <span id="char-count-observaciones">0</span>/255
+                                    </div>
+                                </div>
+                                <div id="caja-error-cierre" class="error-message"
+                                    style="display: none; text-align: center; margin-bottom: 15px; font-size: 14px;">
+                                </div>
+
+                                <div>
+                                    <button type="button" id="btn-cerrar-caja" class="btn-cerrar-turno"
+                                        style="width: 100%; justify-content: center; height: 56px; font-size: 16px;">
+                                        <i class="fas fa-lock"></i> Confirmar y Cerrar Turno
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Contenedor Historial de Sesiones (oculto por defecto) -->
+        <div id="caja-historial-container" style="display: none;">
+            <div
+                style="width: 100%; background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3
+                        style="margin: 0; color: #1e293b; font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                        <div
+                            style="background: #e0e7ff; color: #6366f1; padding: 8px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-history" style="font-size: 14px;"></i>
+                        </div>
+                        Mi Historial de Cajas
+                    </h3>
+                </div>
+
+                <!-- Búsqueda y Filtros Historial Modernizados -->
+                <div
+                    style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px 20px; margin: 0 0 20px;">
+                    <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap; width: 100%;">
+                        <!-- Búsqueda Global -->
+                        <div style="flex: 1; min-width: 250px;">
+                            <div style="position: relative;">
+                                <i class="fas fa-search"
+                                    style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #94a3b8;"></i>
+                                <input type="text" placeholder="Buscar por notas..." id="historial-busqueda"
+                                    style="width: 100%; padding: 10px 14px 10px 40px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; background: white; transition: all 0.2s;">
+                            </div>
+                        </div>
+
+                        <!-- Filtros de Fecha -->
+                        <div
+                            style="display: flex; align-items: center; gap: 10px; background: white; border: 1px solid #cbd5e1; border-radius: 8px; padding: 4px 12px;">
+                            <i class="fas fa-calendar-alt" style="color: #6366f1;"></i>
+                            <input type="date" id="historial-fecha-desde"
+                                style="border: none; outline: none; font-size: 13px; color: #475569; background: transparent;">
+                            <span style="color: #94a3b8;">→</span>
+                            <input type="date" id="historial-fecha-hasta"
+                                style="border: none; outline: none; font-size: 13px; color: #475569; background: transparent;">
+                        </div>
+
+                        <!-- Estado -->
+                        <select id="historial-filtro-estado"
+                            style="padding: 10px 14px; font-size: 13px; border: 1px solid #cbd5e1; border-radius: 8px; background: white; min-width: 150px; cursor: pointer; color: #475569;">
+                            <option value="">Todos los estados</option>
+                            <option value="ABIERTA">Abierta</option>
+                            <option value="CERRADA">Cerrada</option>
+                        </select>
+
+                        <!-- Con diferencias -->
+                        <button id="btn-historial-diferencias" data-active="false"
+                            style="padding: 10px 16px; font-size: 13px; font-weight: 600; border: 1px solid #cbd5e1; border-radius: 8px; background: white; color: #475569; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.2s;">
+                            <i class="fas fa-not-equal"></i> Diferencias
+                        </button>
+
+                        <div style="width: 1px; height: 30px; background: #e2e8f0; margin: 0 5px;"></div>
+
+                        <!-- Botones de Acción -->
+                        <div style="display: flex; gap: 10px;">
+                            <button type="button" class="btn-primary" id="historial-btn-buscar"
+                                style="padding: 10px 18px; font-size: 13px; font-weight: 600; border-radius: 8px;">
+                                <i class="fas fa-filter"></i> Filtrar
+                            </button>
+                            <button type="button" class="btn-outline" id="btn-historial-limpiar"
+                                style="padding: 10px 18px; font-size: 13px; font-weight: 600; border-radius: 8px;">
+                                Limpiar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="historial-caja-filtro-error" class="error-message" style="margin-bottom: 10px; display: none;">
+                </div>
+
+                <div class="table-container-cliente">
+                    <table class="data-table" id="tabla-historial-caja" style="font-size: 13px;">
+                        <thead>
+                            <tr>
+                                <th style="width: 70px;">#</th>
+                                <th>Detalle del Turno</th>
+                                <th style="text-align: right;">Total Facturado</th>
+                                <th style="text-align: right;">Cierre Efectivo</th>
+                                <th style="text-align: right;">Diferencia</th>
+                                <th style="text-align: center; width: 60px;">Notas</th>
+                                <th style="text-align: center;">Estado</th>
+                                <th style="text-align: center;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-historial-caja-body">
+                            <tr>
+                                <td colspan="8" style="text-align: center; padding: 30px; color: #94a3b8;">
+                                    <i class="fas fa-spinner fa-spin"></i> Cargando historial...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="pagination-controls" style="text-align: right; padding: 10px 0;">
+                        <span id="historial-caja-page-info" style="margin-right: 15px;">Página 1 de 1</span>
+                        <button class="btn-outline" id="historial-caja-prev" disabled>
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                        <button class="btn-outline" id="historial-caja-next">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    </main>
+
+    <!-- Modal Logout -->
+    <div id="logout-modal" class="modal">
+        <div class="modal-content" style="max-width: 450px; padding: 0;">
+            <div class="modal-header" style="padding: 20px 25px;">
+                <h3 style="margin: 0; font-size: 18px;">
+                    <i class="fas fa-sign-out-alt" style="color: #e74c3c;"></i> Confirmar Salida
+                </h3>
+            </div>
+            <div class="modal-body" style="padding: 20px 25px;">
+                <p style="font-size: 15px; margin: 0; text-align: center; line-height: 1.5;">¿Estás seguro de que
+                    deseas cerrar sesión?</p>
+            </div>
+            <div class="modal-footer" style="padding: 15px 25px; gap: 10px;">
+                <button id="confirm-logout" class="btn-primary" style="background-color: #e74c3c;">
+                    <i class="fas fa-sign-out-alt"></i> Sí, Salir
+                </button>
+                <button id="cancel-logout" class="btn-outline">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Confirmación Genérico -->
+    <div id="confirmation-modal" class="modal">
+        <div class="modal-content" style="max-width: 450px; padding: 0;">
+            <div class="modal-header" style="padding: 20px 25px;">
+                <h3 style="margin: 0; font-size: 18px;">
+                    <i class="fas fa-question-circle" style="color: #2563eb;"></i> Confirmar Acción
+                </h3>
+                <button class="modal-close" id="btn-confirm-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" style="padding: 20px 25px;">
+                <p id="confirmation-message" style="font-size: 15px; margin: 0; text-align: center; line-height: 1.5;">
+                    ¿Estás seguro?</p>
+            </div>
+            <div class="modal-footer" style="padding: 15px 25px; gap: 10px;">
+                <button id="btn-confirm-yes" class="btn-primary" style="background-color: #2563eb;">
+                    <i class="fas fa-check"></i> Confirmar
+                </button>
+                <button id="btn-confirm-cancel" class="btn-outline">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Resumen Cierre Caja (Cierre Ciego Premium) -->
+    <div id="modal-resumen-cierre" class="modal-overlay" style="display: none; z-index: 10001;">
+        <div class="modal-content modal-large"
+            style="position: relative; width: 95%; max-width: 600px; display: flex; flex-direction: column; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 25px 60px rgba(0,0,0,0.15);">
+
+            <!-- Profile Banner Header -->
+            <div
+                style="background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%); padding: 32px 36px 28px; border-radius: 16px 16px 0 0; position: relative; overflow: hidden;">
+                <!-- Patrones decorativos -->
+                <div
+                    style="position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%); border-radius: 50%;">
+                </div>
+                <div
+                    style="position: absolute; bottom: -40px; left: -20px; width: 140px; height: 140px; background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%); border-radius: 50%;">
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 20px; position: relative; z-index: 1;">
+                    <!-- Avatar / Ícono de Cristal -->
+                    <div
+                        style="width: 64px; height: 64px; background: rgba(255,255,255,0.1); border-radius: 16px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); flex-shrink: 0;">
+                        <i class="fas fa-lock" style="color: white; font-size: 26px;"></i>
+                    </div>
+                    <!-- Info Principal -->
+                    <div style="flex: 1; min-width: 0;">
+                        <h3
+                            style="margin: 0 0 6px; color: white; font-size: 22px; font-weight: 700; letter-spacing: -0.5px;">
+                            Declaración Registrada
+                        </h3>
+                        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                            <span
+                                style="display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.1); padding: 4px 12px; border-radius: 6px; color: rgba(255,255,255,0.8); font-size: 13px; font-weight: 500; border: 1px solid rgba(255,255,255,0.1);">
+                                <i class="fas fa-user-circle" style="font-size: 11px; opacity: 0.7;"></i>
+                                Responsable: <span id="modal-cierre-responsable"
+                                    style="font-weight: 600; color: white;">---</span>
+                            </span>
+                            <span
+                                style="display: inline-flex; align-items: center; gap: 6px; background: rgba(16, 185, 129, 0.2); padding: 4px 12px; border-radius: 6px; color: #34d399; font-size: 13px; font-weight: 600; border: 1px solid rgba(16, 185, 129, 0.3);">
+                                <i class="fas fa-hashtag" style="font-size: 11px;"></i>
+                                <span id="modal-cierre-sesion">Sesión #---</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body" style="padding: 32px 36px; background: #f8fafc; border-radius: 0 0 16px 16px;">
+
+                <!-- Tiempos Discretos -->
+                <div
+                    style="display: flex; justify-content: space-between; margin-bottom: 24px; background: white; padding: 12px 20px; border-radius: 10px; border: 1px solid #e2e8f0;">
+                    <span style="font-size: 13px; color: #64748b;">Apertura: <strong id="modal-resumen-apertura"
+                            style="color: #0f172a;">--:--</strong></span>
+                    <span style="font-size: 13px; color: #64748b;">Cierre: <strong id="modal-resumen-cierre-hora"
+                            style="color: #0f172a;">--:--</strong></span>
+                </div>
+
+                <!-- EFECTIVO FÍSICO DECLARADO -->
+                <div
+                    style="background: white; border-radius: 16px; padding: 32px 20px; border: 2px solid #e2e8f0; text-align: center; margin-bottom: 32px;">
+                    <span
+                        style="display: block; font-size: 13px; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">
+                        Efectivo Físico Declarado
+                    </span>
+                    <span id="modal-resumen-real"
+                        style="font-size: 36px; font-weight: 900; color: #0f172a; letter-spacing: -1px;">$0,00</span>
+                </div>
+
+                <!-- Footer Acciones -->
+                <div
+                    style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #e2e8f0; padding-top: 24px;">
+                    <button type="button" id="btn-cancelar-cierre"
+                        style="background: transparent; border: 1px solid #cbd5e1; color: #475569; padding: 12px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s;"
+                        onmouseover="this.style.background='#f1f5f9';"
+                        onmouseout="this.style.background='transparent';">
+                        <i class="fas fa-arrow-left"></i> Volver a corregir
+                    </button>
+
+                    <button type="button" class="btn-primary" id="btn-confirmar-cierre"
+                        style="padding: 12px 24px; border-radius: 8px; font-size: 14px; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3); border: none; color: white; cursor: pointer;">
+                        <i class="fas fa-check-circle"></i> Confirmar y Finalizar
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Post-Cierre (UX/UI Clean Light Theme) -->
+    <div id="modal-post-cierre" class="modal-overlay"
+        style="display: none; z-index: 10002; background: rgba(15, 23, 42, 0.7); opacity: 0; transition: opacity 0.4s ease-out;">
+        <div class="modal-content"
+            style="position: relative; width: 95%; max-width: 850px; background: #ffffff; border-radius: 24px; overflow: visible; border: 1px solid #e2e8f0; box-shadow: 0 30px 60px rgba(0,0,0,0.15); transform: translateY(30px); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);">
+
+            <!-- Botón de cerrar flotante -->
+            <button id="btn-post-cierre-close" class="modal-close"
+                style="position: absolute; top: -16px; right: -16px; background: white; border: 2px solid #e2e8f0; color: #475569 !important; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
+                onmouseenter="this.style.background='#ef4444'; this.style.color='white'; this.style.borderColor='#ef4444'; this.style.transform='scale(1.1)';"
+                onmouseleave="this.style.background='white'; this.style.color='#475569'; this.style.borderColor='#e2e8f0'; this.style.transform='scale(1)';">
+                <i class="fas fa-times" style="font-size: 16px;"></i>
+            </button>
+
+            <!-- Animaciones CSS Inline para el Modal -->
+            <style>
+                .post-cierre-visible {
+                    opacity: 1 !important;
+                }
+
+                .post-cierre-visible .modal-content {
+                    transform: translateY(0) !important;
+                }
+
+                .post-cierre-fade-up {
+                    opacity: 0;
+                    transform: translateY(15px);
+                    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+                }
+
+                @keyframes fadeUp {
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                .delay-1 {
+                    animation-delay: 0.1s;
+                }
+
+                .delay-2 {
+                    animation-delay: 0.2s;
+                }
+
+                .delay-3 {
+                    animation-delay: 0.3s;
+                }
+
+                .metric-card {
+                    background: #f8fafc;
+                    border: 1px solid #e2e8f0;
+                    border-radius: 16px;
+                    padding: 24px;
+                    position: relative;
+                    overflow: hidden;
+                    transition: all 0.3s ease;
+                }
+
+                .metric-card:hover {
+                    background: #f1f5f9;
+                    border-color: #cbd5e1;
+                }
+
+                .metric-title {
+                    font-size: 13px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    color: #64748b;
+                    margin-bottom: 8px;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                }
+
+                .metric-value {
+                    font-size: 32px;
+                    font-weight: 800;
+                    color: #0f172a;
+                    letter-spacing: -1px;
+                    font-family: 'Inter', system-ui, sans-serif;
+                }
+
+                .metric-sub {
+                    font-size: 13px;
+                    color: #475569;
+                    margin-top: 8px;
+                    display: flex;
+                    justify-content: space-between;
+                    font-weight: 500;
+                }
+            </style>
+
+            <!-- Header Decorativo -->
+            <div style="padding: 40px; position: relative; background: #ffffff; border-bottom: 1px solid #e2e8f0; border-radius: 24px 24px 0 0;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <div
+                            style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 20px; color: #059669; font-size: 12px; font-weight: 700; margin-bottom: 16px; letter-spacing: 0.5px;">
+                            <div
+                                style="width: 6px; height: 6px; background: #10b981; border-radius: 50%; box-shadow: 0 0 8px #10b981;">
+                            </div>
+                            TURNO FINALIZADO
+                        </div>
+                        <h2
+                            style="margin: 0 0 8px 0; color: #0f172a; font-size: 28px; font-weight: 800; letter-spacing: -1px;">
+                            Resumen de Cierre</h2>
+                        <p
+                            style="margin: 0; color: #64748b; font-size: 14px; display: flex; align-items: center; gap: 12px; font-weight: 500;">
+                            <span id="post-cierre-operador" style="color: #334155;">---</span>
+                            <span>|</span>
+                            <span>Apertura: <strong id="post-cierre-apertura"
+                                    style="color: #334155;">--:--</strong></span>
+                            <span>|</span>
+                            <span>Cierre: <strong id="post-cierre-hora" style="color: #334155;">--:--</strong></span>
+                        </p>
+                    </div>
+                    <div
+                        style="width: 60px; height: 60px; border-radius: 16px; background: #eff6ff; border: 1px solid #bfdbfe; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-file-invoice-dollar" style="color: #3b82f6; font-size: 28px;"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Body Grid -->
+            <div style="padding: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; background: #f8fafc;">
+
+                <!-- COMPOSICIÓN EFECTIVO -->
+                <div class="metric-card post-cierre-fade-up delay-1" style="background: white;">
+                    <div class="metric-title"><i class="fas fa-money-bill-wave" style="color: #10b981;"></i> Saldo
+                        Inicial + Ventas Efectivo</div>
+                    <div class="metric-value" id="post-cierre-efectivo-teorico">$0</div>
+                    <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #e2e8f0;">
+                        <div class="metric-sub"><span>Saldo Inicial (Apertura)</span><strong id="post-cierre-inicial"
+                                style="color: #475569;">$0</strong></div>
+                        <div class="metric-sub"><span>Ingresos en Efectivo</span><strong id="post-cierre-ingresos-ef"
+                                style="color: #10b981;">+$0</strong></div>
+                        <div class="metric-sub"><span>Egresos / Gastos</span><strong id="post-cierre-gastos"
+                                style="color: #ef4444;">-$0</strong></div>
+                    </div>
+                </div>
+
+                <!-- AUDITORÍA DE CAJA -->
+                <div class="metric-card post-cierre-fade-up delay-2" style="background: white;">
+                    <div class="metric-title"><i class="fas fa-scale-balanced" style="color: #f59e0b;"></i> Auditoría de
+                        Caja Físico</div>
+                    <div class="metric-value" id="post-cierre-fisico-real" style="color: #0f172a;">$0</div>
+                    <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #e2e8f0;">
+                        <div class="metric-sub" style="margin-bottom: 12px;"><span>Efectivo Esperado</span><strong
+                                id="post-cierre-esperado-repetido" style="color: #64748b;">$0</strong></div>
+
+                        <!-- Etiqueta Dinámica de Diferencia -->
+                        <div id="post-cierre-diferencia-container"
+                            style="display: flex; justify-content: space-between; align-items: center; padding: 12px; border-radius: 8px; background: #ecfdf5; border: 1px solid #a7f3d0;">
+                            <span id="post-cierre-diferencia-label"
+                                style="font-size: 13px; font-weight: 700; color: #059669;">CUADRE EXACTO</span>
+                            <strong id="post-cierre-diferencia-monto"
+                                style="font-size: 16px; color: #059669; font-weight: 800;">$0</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VOLUMEN DIGITAL Y TOTAL -->
+                <div class="metric-card post-cierre-fade-up delay-3"
+                    style="grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; background: #ffffff; border: 2px solid #e0e7ff; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.05);">
+                    <div style="flex: 1;">
+                        <div class="metric-title"><i class="fas fa-chart-line" style="color: #4f46e5;"></i> Facturación
+                            Total del Turno</div>
+                        <div class="metric-value" id="post-cierre-facturacion-total"
+                            style="font-size: 42px; font-weight: 800; color: #4f46e5;">$0</div>
+                        <div style="margin-top: 8px; font-size: 13px; color: #64748b; font-weight: 500;">Volumen global
+                            incluyendo efectivo y plataformas digitales.</div>
+                    </div>
+                    <div style="flex: 1; border-left: 1px solid #e2e8f0; padding-left: 40px; margin-left: 40px;">
+                        <div class="metric-sub" style="margin-top: 0; margin-bottom: 12px;">
+                            <span style="display: flex; align-items: center; gap: 8px;"><i class="fas fa-credit-card"
+                                    style="color: #6366f1;"></i> Tarjetas</span>
+                            <strong id="post-cierre-tarjetas"
+                                style="color: #0f172a; font-size: 16px; font-weight: 700;">$0</strong>
+                        </div>
+                        <div class="metric-sub" style="margin-bottom: 12px;">
+                            <span style="display: flex; align-items: center; gap: 8px;"><i class="fas fa-exchange-alt"
+                                    style="color: #f59e0b;"></i> Transferencias</span>
+                            <strong id="post-cierre-transferencias"
+                                style="color: #0f172a; font-size: 16px; font-weight: 700;">$0</strong>
+                        </div>
+                        <div class="metric-sub" style="margin-bottom: 0;">
+                            <span style="display: flex; align-items: center; gap: 8px;"><i class="fas fa-money-bill"
+                                    style="color: #10b981;"></i> Efectivo Operado</span>
+                            <strong id="post-cierre-efectivo-operado"
+                                style="color: #0f172a; font-size: 16px; font-weight: 700;">$0</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div
+                style="padding: 24px 40px; background: #ffffff; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; border-radius: 0 0 24px 24px;">
+                <button type="button" id="btn-post-cierre-finalizar"
+                    style="background: #3b82f6; border: none; color: white; padding: 12px 32px; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); display: flex; align-items: center; gap: 8px;"
+                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(59, 130, 246, 0.4)';"
+                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(59, 130, 246, 0.3)';">
+                    Salir del Resumen <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/cajero.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/cajaCajero.js"></script>
+
+
+
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,793 @@
+/* ========================================
+   DASHBOARD DE INFORMES - Estilos Completos
+   ======================================== */
+
+/* ========================================
+   SECCIÓN PRINCIPAL - Estilos Mejorados
+   ======================================== */
+
+/* Títulos de Secciones */
+#principal-section h3, #caja-section h3 {
+    margin: 0 0 20px 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+#principal-section h3 i, #caja-section h3 i {
+    font-size: 22px;
+}
+
+/* Sección de Alertas */
+.alerts-section {
+    background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
+    border-radius: 16px;
+    padding: 25px;
+    margin: 20px 30px 30px;
+    border-left: 4px solid #dc3545;
+    box-shadow: 0 2px 12px rgba(220, 53, 69, 0.08);
+}
+
+/* Sección de Resumen de Hoy */
+.today-summary {
+    background: linear-gradient(135deg, #f0fff4 0%, #ffffff 100%);
+    border-radius: 16px;
+    padding: 25px;
+    margin: 0 30px 30px;
+    border-left: 4px solid #28a745;
+    box-shadow: 0 2px 12px rgba(40, 167, 69, 0.08);
+}
+
+/* Sección de Stock Bajo */
+.low-stock-section {
+    background: #fff;
+    margin: 0 30px 20px;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.low-stock-section h3 {
+    color: #2c3e50;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+#principal-section .dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+    padding: 0;
+    margin-top: 20px;
+}
+
+#caja-section .dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Más anchura mínima */
+    gap: 15px;
+    padding: 0;
+    margin-top: 15px;
+    margin-bottom: 35px; /* Mayor separación con las tablas */
+}
+
+/* Tarjetas KPI Mejoradas */
+#principal-section .stat-card, #caja-section .stat-card {
+    background: white;
+    border-radius: 14px;
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #f0f0f0;
+    min-height: 120px;
+    position: relative;
+    overflow: hidden;
+}
+
+#principal-section .stat-card::before, #caja-section .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #007bff 0%, #0056b3 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#principal-section .stat-card:hover::before, #caja-section .stat-card:hover::before {
+    opacity: 1;
+}
+
+#principal-section .stat-card:hover, #caja-section .stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border-color: #e0e0e0;
+}
+
+/* Iconos de Stats con Gradientes */
+#principal-section .stat-icon, #caja-section .stat-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    flex-shrink: 0;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Icono Verde - Ventas/Éxito */
+#principal-section .stat-icon.green, #caja-section .stat-icon.green {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+}
+
+/* Icono Azul - Información */
+#principal-section .stat-icon.blue, #caja-section .stat-icon.blue {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    color: white;
+}
+
+/* Icono Morado - Productos */
+#principal-section .stat-icon.purple, #caja-section .stat-icon.purple {
+    background: linear-gradient(135deg, #6f42c1 0%, #5a32a3 100%);
+    color: white;
+}
+
+/* Iconos para Alertas */
+#principal-section .stat-card.alert .stat-icon, #caja-section .stat-card.alert .stat-icon,
+#principal-section .stat-icon.alert, #caja-section .stat-icon.alert {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    color: white;
+}
+
+#principal-section .stat-card.warning .stat-icon, #caja-section .stat-card.warning .stat-icon,
+#principal-section .stat-icon.warning, #caja-section .stat-icon.warning {
+    background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+    color: white;
+}
+
+#principal-section .stat-content, #caja-section .stat-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+#principal-section .stat-content h3 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0;
+    border: none;
+    line-height: 1.2;
+}
+
+#caja-section .stat-content h3 {
+    font-size: 24px; /* Más chico para la Caja */
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0;
+    border: none;
+    line-height: 1.2;
+}
+
+#principal-section .stat-content p {
+    font-size: 14px;
+    font-weight: 500;
+    color: #6c757d;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#caja-section .stat-content p {
+    font-size: 11px; /* Más chico para la Caja */
+    font-weight: 500;
+    color: #6c757d;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#principal-section .stat-card.alert .stat-content h3, #caja-section .stat-card.alert .stat-content h3 {
+    color: #dc3545;
+}
+
+#principal-section .stat-card.warning .stat-content h3, #caja-section .stat-card.warning .stat-content h3 {
+    color: #ff9800;
+}
+
+/* ========================================
+   SECCIÓN DE INFORMES - NUEVA ESTRUCTURA
+   ======================================== */
+
+/* Título Simple de Informes */
+.informes-titulo {
+    padding: 25px 30px 20px;
+    margin: 0;
+}
+
+.informes-titulo h2 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 700;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.informes-titulo h2 i {
+    color: #667eea;
+    font-size: 28px;
+}
+
+/* Barra de Filtros Compacta */
+.informes-filtros {
+    background: white;
+    padding: 12px 20px;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 15px;
+    border-bottom: 1px solid #e9ecef;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.filtros-grupo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.filtros-fecha {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.fecha-input-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.fecha-input-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #495057;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.fecha-input-group label i {
+    font-size: 12px;
+    color: #667eea;
+}
+
+.fecha-input-group input[type="date"] {
+    padding: 6px 10px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #495057;
+    transition: all 0.2s;
+    min-width: 130px;
+}
+
+.fecha-input-group input[type="date"]:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.filtros-acciones {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filtros-acciones button {
+    padding: 6px 12px;
+    font-size: 13px;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+
+.periodo-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 10px;
+    padding: 6px 14px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 6px;
+    font-size: 12px;
+    color: #495057;
+    font-weight: 500;
+}
+
+.periodo-indicator i {
+    color: #667eea;
+    font-size: 12px;
+}
+
+/* Contenedor Principal de Informes */
+.informes-content {
+    padding: 20px;
+    background: #f8f9fa;
+}
+
+/* Grid de KPIs para Informes */
+.informes-kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+/* 4-column KPI grid */
+.informes-kpis-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* Tarjetas KPI para Informes */
+.kpi-card {
+    background: white;
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #e9ecef;
+    position: relative;
+    overflow: hidden;
+}
+
+.kpi-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent 0%, currentColor 100%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.kpi-card:hover::after {
+    opacity: 0.3;
+}
+
+.kpi-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.kpi-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: white;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* KPI Color Variants */
+.kpi-ventas .kpi-icon {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+}
+
+.kpi-ventas::after {
+    color: #28a745;
+}
+
+.kpi-compras .kpi-icon {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+}
+
+.kpi-compras::after {
+    color: #dc3545;
+}
+
+.kpi-ganancia .kpi-icon {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+}
+
+.kpi-ganancia::after {
+    color: #007bff;
+}
+
+.kpi-stock .kpi-icon {
+    background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+}
+
+.kpi-stock::after {
+    color: #ffc107;
+}
+
+.kpi-inventario .kpi-icon {
+    background: linear-gradient(135deg, #6f42c1 0%, #5a32a3 100%);
+}
+
+.kpi-inventario::after {
+    color: #6f42c1;
+}
+
+.kpi-ganancia-proyectada .kpi-icon {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+}
+
+.kpi-ganancia-proyectada::after {
+    color: #007bff;
+}
+
+.kpi-content {
+    flex: 1;
+}
+
+.kpi-content h4 {
+    margin: 0 0 3px 0;
+    font-size: 11px;
+    color: #6c757d;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.kpi-value {
+    margin: 0 0 2px 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #2c3e50;
+    line-height: 1.2;
+}
+
+.kpi-label {
+    font-size: 11px;
+    color: #adb5bd;
+    font-weight: 500;
+}
+
+/* Ganancia positiva en tablas */
+.ganancia-positiva {
+    color: #28a745;
+    font-weight: 600;
+}
+
+/* Grid de Gráficos Principales */
+.informes-charts-main {
+    display: grid;
+    grid-template-columns: 70fr 30fr;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+/* Full-width chart mode */
+.informes-chart-full {
+    grid-template-columns: 1fr;
+    margin-left: -5px;
+    margin-right: -5px;
+}
+
+.chart-full-width {
+    width: 100%;
+}
+
+/* Contenedores de Gráficos */
+.chart-principal,
+.chart-lateral {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    border: 1px solid #e9ecef;
+}
+
+.chart-principal .chart-body {
+    padding: 10px 15px;
+}
+
+.chart-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e9ecef;
+    background: linear-gradient(to right, #f8f9fa 0%, white 100%);
+}
+
+.chart-header h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.chart-header h3 i {
+    color: #667eea;
+    font-size: 14px;
+}
+
+.chart-body {
+    padding: 15px;
+}
+
+.chart-legend {
+    margin-top: 15px;
+    padding: 0 25px 20px;
+    text-align: center;
+    font-size: 13px;
+    color: #6c757d;
+}
+
+/* Sección de Detalles */
+.informes-details {
+    margin-bottom: 20px;
+}
+
+/* Rankings Grid (3 tablas lado a lado) */
+.informes-rankings {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 15px;
+}
+
+/* Quick Filter Buttons */
+.filtros-rapidos {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-quick-filter {
+    padding: 5px 12px;
+    font-size: 12px;
+    border-radius: 20px;
+    border: 1px solid #ced4da;
+    background: white;
+    color: #495057;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.btn-quick-filter:hover {
+    background: #f0f0f0;
+    border-color: #667eea;
+    color: #667eea;
+}
+
+.btn-quick-filter.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+    box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);
+}
+
+/* Panel header icon colors for different rankings */
+.panel-header-rentable h3 i {
+    color: #6f42c1 !important;
+}
+
+.panel-header-proveedor h3 i {
+    color: #17a2b8 !important;
+}
+
+.detail-panel {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e9ecef;
+    overflow: hidden;
+}
+
+.panel-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e9ecef;
+    background: linear-gradient(to right, #f8f9fa 0%, white 100%);
+}
+
+.panel-header h3 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 700;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.panel-header h3 i {
+    color: #ffc107;
+    font-size: 14px;
+}
+
+.panel-body {
+    padding: 0;
+}
+
+/* Tabla de Top Productos Mejorada */
+.top-productos-container {
+    overflow-x: auto;
+}
+
+.top-productos-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.top-productos-table thead th {
+    background: #f8f9fa;
+    color: #495057;
+    font-weight: 700;
+    text-align: left;
+    padding: 8px 12px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.top-productos-table tbody td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #f1f3f5;
+    color: #495057;
+    font-size: 13px;
+}
+
+.top-productos-table tbody td:first-child {
+    font-weight: 700;
+    color: #667eea;
+    font-size: 13px;
+}
+
+.top-productos-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.top-productos-table tbody tr:hover {
+    background: #f8f9fa;
+}
+
+/* Badges para posiciones top */
+.top-productos-table tbody tr:nth-child(1) td:first-child {
+    color: #ffc107;
+}
+
+.top-productos-table tbody tr:nth-child(2) td:first-child {
+    color: #adb5bd;
+}
+
+.top-productos-table tbody tr:nth-child(3) td:first-child {
+    color: #cd7f32;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 1200px) {
+    .informes-charts-main {
+        grid-template-columns: 60fr 40fr;
+    }
+}
+
+@media (max-width: 992px) {
+    .informes-charts-main {
+        grid-template-columns: 1fr;
+    }
+
+    .chart-principal,
+    .chart-lateral {
+        min-height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .informes-header {
+        padding: 25px 20px;
+    }
+
+    .informes-header .header-icon-title>i {
+        font-size: 36px;
+    }
+
+    .informes-header h2 {
+        font-size: 22px;
+    }
+
+    .informes-filtros {
+        padding: 15px 20px;
+    }
+
+    .filtros-grupo {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filtros-fecha {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .fecha-input-group {
+        width: 100%;
+    }
+
+    .fecha-input-group input[type="date"] {
+        width: 100%;
+    }
+
+    .filtros-acciones {
+        width: 100%;
+    }
+
+    .filtros-acciones button {
+        flex: 1;
+    }
+
+    .informes-content {
+        padding: 20px;
+    }
+
+    .informes-kpis,
+    .informes-kpis-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .informes-rankings {
+        grid-template-columns: 1fr;
+    }
+
+    .kpi-card {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .top-productos-table {
+        font-size: 12px;
+    }
+
+    .top-productos-table thead th,
+    .top-productos-table tbody td {
+        padding: 10px 12px;
+    }
+}

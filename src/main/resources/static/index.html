@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Inventarios - Login</title>
+    <link rel="icon" type="image/jpeg" href="images/LOGO%20SISTEMA.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    
+    <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="login-page-body">
+    <!-- Animated Background Elements -->
+    <div class="login-bg-shape login-bg-shape-1"></div>
+    <div class="login-bg-shape login-bg-shape-2"></div>
+
+    <!-- Login Container -->
+    <div class="login-container" id="login-container">
+        <div class="login-logo-wrapper">
+            <img src="images/LOGO%20SISTEMA.jpg" alt="Logo">
+        </div>
+        
+        <h1>Gestión de Inventarios</h1>
+        <p class="login-sub">Ingresa tus credenciales para acceder</p>
+        
+        <form id="login-form" class="login-form-unique">
+            <div class="input-group">
+                <label for="login-email">Correo Electrónico</label>
+                <input type="text" id="login-email" placeholder="correo@ejemplo.com" autocomplete="email">
+                <span id="email-error" class="error-message" style="display: none;"></span>
+            </div>
+            
+            <div class="input-group">
+                <label for="login-password">Contraseña</label>
+                <div class="password-field-container">
+                    <input type="password" id="login-password" placeholder="Tu contraseña">
+                    <button type="button" class="password-toggle-btn" id="login-password-toggle">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                <span id="password-error" class="error-message" style="display: none;"></span>
+            </div>
+            
+            <button type="submit" class="login-submit-btn">
+                Iniciar sesión <i class="fas fa-arrow-right"></i>
+            </button>
+        </form>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
